@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    background-color: #FEF9F0;
+    color: #1D1C16;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #FEDB9F;
+    color: #785F2E;
+  }
+}
+
+/* Custom luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FEF9F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8B77E;
+  border-radius: 4px;
+}
+
