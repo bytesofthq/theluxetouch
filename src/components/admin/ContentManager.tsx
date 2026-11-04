@@ -82,18 +82,18 @@ export function ContentManager({
   };
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-6 sm:space-y-10">
       {/* Homepage Hero CMS */}
-      <div className="bg-white p-6 sm:p-8 rounded-lg border border-admin-border shadow-card">
-        <div className="flex items-center justify-between border-b border-admin-border pb-4 mb-6">
+      <div className="bg-white p-4 sm:p-6 sm:p-8 rounded-lg border border-admin-border shadow-card">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-admin-border pb-4 mb-6">
           <div>
-            <h3 className="font-serif text-2xl text-primary font-normal">Homepage Hero Section</h3>
+            <h3 className="font-serif text-xl sm:text-2xl text-primary font-normal">Homepage Hero Section</h3>
             <p className="text-xs text-espresso/60 mt-0.5">
               Edit the lead headlines, taglines, and call-to-action buttons on the public homepage.
             </p>
           </div>
           {saveSuccess && (
-            <span className="flex items-center gap-1.5 text-xs text-emerald-700 font-semibold bg-emerald-50 px-3 py-1.5 rounded border border-emerald-200">
+            <span className="self-start sm:self-auto flex items-center gap-1.5 text-xs text-emerald-700 font-semibold bg-emerald-50 px-3 py-1.5 rounded border border-emerald-200">
               <CheckCircle2 className="w-4 h-4" /> Published to Website!
             </span>
           )}
@@ -136,7 +136,7 @@ export function ContentManager({
             />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
             <div>
               <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
                 Primary CTA Button Label
@@ -162,11 +162,11 @@ export function ContentManager({
             </div>
           </div>
 
-          <div className="pt-4 flex justify-end">
+          <div className="pt-3 sm:pt-4 flex justify-end">
             <button
               type="submit"
               disabled={isSavingHero}
-              className="px-6 py-2.5 bg-primary text-surface rounded text-xs uppercase tracking-wider font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-50 flex items-center gap-2"
+              className="w-full sm:w-auto justify-center px-6 py-2.5 bg-primary text-surface rounded text-xs uppercase tracking-wider font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-50 flex items-center gap-2"
             >
               <Save className="w-3.5 h-3.5" />
               {isSavingHero ? "Saving Changes..." : "Publish Hero Changes"}
@@ -176,9 +176,9 @@ export function ContentManager({
       </div>
 
       {/* Patron Testimonials Manager */}
-      <div className="bg-white p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-8">
+      <div className="bg-white p-4 sm:p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-6 sm:space-y-8">
         <div>
-          <h3 className="font-serif text-2xl text-primary font-normal">Patron Testimonials</h3>
+          <h3 className="font-serif text-xl sm:text-2xl text-primary font-normal">Patron Testimonials</h3>
           <p className="text-xs text-espresso/60 mt-0.5">
             Manage verified client reviews and private estate feedback featured on the public website.
           </p>
@@ -189,15 +189,16 @@ export function ContentManager({
           {testimonials.map((t) => (
             <div
               key={t._id}
-              className="p-5 rounded bg-surface-admin/60 border border-admin-border flex flex-col justify-between"
+              className="p-4 sm:p-5 rounded bg-surface-admin/60 border border-admin-border flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-secondary font-bold">{"★".repeat(t.rating || 5)}</span>
                   <button
                     onClick={() => handleDeleteTestimonial(t._id)}
-                    className="text-espresso/40 hover:text-red-600 transition-colors"
+                    className="p-1 rounded text-espresso/40 hover:text-red-600 transition-colors"
                     title="Delete review"
+                    aria-label="Delete review"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
@@ -217,13 +218,13 @@ export function ContentManager({
         {/* Add Testimonial Form */}
         <form
           onSubmit={handleAddTestimonial}
-          className="p-6 bg-surface-admin rounded-lg border border-admin-border space-y-4 text-xs text-espresso"
+          className="p-4 sm:p-6 bg-surface-admin rounded-lg border border-admin-border space-y-4 text-xs text-espresso"
         >
           <h4 className="font-bold text-xs uppercase tracking-wider text-espresso/70">
             Add New Client Review
           </h4>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
             <div>
               <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
                 Client Name *
@@ -284,7 +285,7 @@ export function ContentManager({
           <button
             type="submit"
             disabled={isSavingTestimonial || !newCustomerName || !newReview}
-            className="px-5 py-2 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-50 flex items-center gap-1.5"
+            className="w-full sm:w-auto justify-center px-5 py-2 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-50 flex items-center gap-1.5"
           >
             <Plus className="w-3.5 h-3.5" /> Add Testimonial
           </button>
@@ -293,4 +294,3 @@ export function ContentManager({
     </div>
   );
 }
-

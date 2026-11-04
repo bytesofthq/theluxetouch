@@ -146,17 +146,19 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Upload & Creator Box */}
-      <div className="bg-white p-6 sm:p-8 rounded-lg border border-admin-border shadow-card">
-        <h3 className="font-serif text-2xl text-primary mb-2">Publish New Lookbook Artwork</h3>
-        <p className="text-xs text-espresso/60 mb-6 font-light">
+      <div className="bg-white p-4 sm:p-6 sm:p-8 rounded-lg border border-admin-border shadow-card">
+        <h3 className="font-serif text-xl sm:text-2xl text-primary mb-1 sm:mb-2">
+          Publish New Lookbook Artwork
+        </h3>
+        <p className="text-xs text-espresso/60 mb-5 sm:mb-6 font-light">
           Upload editorial photography of bridal ceremonies, hair glazing, or private suite rituals.
         </p>
 
         {feedback && (
           <div
-            className={`p-4 rounded text-xs flex items-center gap-2 mb-6 ${
+            className={`p-3.5 sm:p-4 rounded text-xs flex items-center gap-2 mb-5 sm:mb-6 ${
               feedback.type === "success"
                 ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
                 : "bg-red-50 text-red-800 border border-red-200"
@@ -171,22 +173,22 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
           </div>
         )}
 
-        <form onSubmit={handleSaveImage} className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <form onSubmit={handleSaveImage} className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
           {/* Dropzone Column */}
-          <div className="md:col-span-5 flex flex-col items-center justify-center p-6 border-2 border-dashed border-secondary/50 rounded-lg bg-surface-admin/50 text-center relative hover:bg-surface-admin transition-colors">
+          <div className="md:col-span-5 flex flex-col items-center justify-center p-4 sm:p-6 border-2 border-dashed border-secondary/50 rounded-lg bg-surface-admin/50 text-center relative hover:bg-surface-admin transition-colors">
             {imageUrl ? (
               <div className="relative w-full aspect-[4/5] rounded overflow-hidden shadow">
                 <Image src={imageUrl} alt="Uploaded Preview" fill className="object-cover" />
                 <button
                   type="button"
                   onClick={() => setImageUrl("")}
-                  className="absolute top-2 right-2 bg-espresso/80 text-white p-1 rounded-full text-xs"
+                  className="absolute top-2 right-2 bg-espresso/80 text-white p-1 rounded-full text-xs shadow hover:bg-espresso"
                 >
                   Change
                 </button>
               </div>
             ) : (
-              <div className="flex flex-col items-center py-6">
+              <div className="flex flex-col items-center py-4 sm:py-6">
                 <Upload className="w-8 h-8 text-secondary mb-3" />
                 <p className="text-xs font-semibold text-espresso">
                   Drag and drop photo here, or click to browse
@@ -224,7 +226,7 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               <div>
                 <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
                   Category *
@@ -269,7 +271,7 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
               />
             </div>
 
-            <div className="flex items-center gap-2 pt-2">
+            <div className="flex items-center gap-2 pt-1">
               <input
                 type="checkbox"
                 id="featGallery"
@@ -285,7 +287,7 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
             <button
               type="submit"
               disabled={isUploading || !imageUrl || !title}
-              className="px-6 py-2.5 bg-primary text-surface rounded text-xs uppercase tracking-wider font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-40"
+              className="w-full sm:w-auto px-6 py-2.5 bg-primary text-surface rounded text-xs uppercase tracking-wider font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-40 text-center"
             >
               Publish to Lookbook
             </button>
@@ -294,12 +296,12 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
       </div>
 
       {/* Existing Images Grid */}
-      <div className="bg-white p-6 sm:p-8 rounded-lg border border-admin-border shadow-card">
-        <h3 className="text-sm font-bold text-espresso uppercase tracking-wider mb-6">
+      <div className="bg-white p-4 sm:p-6 sm:p-8 rounded-lg border border-admin-border shadow-card">
+        <h3 className="text-xs sm:text-sm font-bold text-espresso uppercase tracking-wider mb-4 sm:mb-6">
           Published Lookbook Collection ({images.length})
         </h3>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
           {images.map((img) => (
             <div
               key={img._id}
@@ -311,14 +313,26 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-white text-xs">
-                <span className="text-[10px] uppercase font-bold tracking-widest text-secondary-fixed">
+
+              {/* Direct Touch / Click Delete Button */}
+              <button
+                type="button"
+                onClick={() => handleDelete(img._id, img.title)}
+                className="absolute top-2 right-2 z-10 p-1.5 rounded-full bg-espresso/70 hover:bg-red-600 text-white sm:opacity-0 sm:group-hover:opacity-100 transition-all shadow"
+                title="Delete image"
+                aria-label="Delete image"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+              </button>
+
+              <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-transparent to-transparent opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2.5 sm:p-4 flex flex-col justify-end text-white text-xs">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-secondary-fixed">
                   {img.category}
                 </span>
-                <p className="font-semibold mt-0.5 line-clamp-1">{img.title}</p>
+                <p className="font-semibold text-[11px] sm:text-xs mt-0.5 line-clamp-1">{img.title}</p>
                 <button
                   onClick={() => handleDelete(img._id, img.title)}
-                  className="mt-3 flex items-center gap-1.5 text-[11px] text-red-400 hover:text-red-300 font-semibold"
+                  className="mt-2 hidden sm:flex items-center gap-1.5 text-[11px] text-red-400 hover:text-red-300 font-semibold"
                 >
                   <Trash2 className="w-3.5 h-3.5" /> Remove
                 </button>
@@ -330,4 +344,3 @@ export function GalleryManager({ initialImages }: { initialImages: GalleryItem[]
     </div>
   );
 }
-

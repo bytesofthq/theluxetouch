@@ -77,33 +77,33 @@ export default async function AdminOverviewPage() {
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto">
       {/* Welcome Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-serif text-primary">Good day, Concierge</h2>
+          <h2 className="text-xl sm:text-2xl font-serif text-primary">Good day, Concierge</h2>
           <p className="text-xs text-espresso/60 mt-0.5">
             Here is your daily operational summary and patron reservation schedule.
           </p>
         </div>
 
         {/* Quick Action Shortcuts */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <Link
             href="/admin/services"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm"
           >
             <Plus className="w-3.5 h-3.5" /> Add Service
           </Link>
           <Link
             href="/admin/gallery"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-admin-border text-espresso text-xs font-semibold hover:bg-surface-admin transition-colors rounded shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-white border border-admin-border text-espresso text-xs font-semibold hover:bg-surface-admin transition-colors rounded shadow-sm"
           >
             <Upload className="w-3.5 h-3.5 text-secondary" /> Upload Photos
           </Link>
           <Link
             href="/admin/bookings"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-admin-border text-espresso text-xs font-semibold hover:bg-surface-admin transition-colors rounded shadow-sm"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-white border border-admin-border text-espresso text-xs font-semibold hover:bg-surface-admin transition-colors rounded shadow-sm"
           >
             View Bookings <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -111,13 +111,13 @@ export default async function AdminOverviewPage() {
       </div>
 
       {/* 4 Metric Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {stats.map((s, i) => {
           const Icon = s.icon;
           return (
             <div
               key={i}
-              className="bg-white p-5 rounded-lg border border-admin-border shadow-card flex flex-col justify-between"
+              className="bg-white p-4 sm:p-5 rounded-lg border border-admin-border shadow-card flex flex-col justify-between"
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[10px] uppercase font-bold tracking-wider text-espresso/50">
@@ -125,7 +125,7 @@ export default async function AdminOverviewPage() {
                 </span>
                 <Icon className={`w-4 h-4 ${s.color}`} />
               </div>
-              <div className="text-3xl font-bold font-sans text-espresso tabular-nums my-1">
+              <div className="text-2xl sm:text-3xl font-bold font-sans text-espresso tabular-nums my-1">
                 {s.value}
               </div>
               <span className="text-[11px] text-espresso/60 font-light">{s.change}</span>
@@ -136,47 +136,47 @@ export default async function AdminOverviewPage() {
 
       {/* Recent Patron Enquiries (Full Width) */}
       <div className="bg-white rounded-lg border border-admin-border shadow-card overflow-hidden">
-        <div className="p-5 border-b border-admin-border flex items-center justify-between">
+        <div className="p-4 sm:p-5 border-b border-admin-border flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-bold text-espresso tracking-wide uppercase">
+            <h3 className="text-xs sm:text-sm font-bold text-espresso tracking-wide uppercase">
               Recent Patron Enquiries
             </h3>
-            <p className="text-[11px] text-espresso/60 font-light mt-0.5">
+            <p className="text-[10px] sm:text-[11px] text-espresso/60 font-light mt-0.5">
               Live reservations and booking requests submitted by patrons
             </p>
           </div>
           <Link
             href="/admin/bookings"
-            className="text-xs font-semibold text-secondary-dark hover:underline flex items-center gap-1"
+            className="text-xs font-semibold text-secondary-dark hover:underline flex items-center gap-1 flex-shrink-0"
           >
             See all <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
+        <div className="overflow-x-auto w-full">
+          <table className="w-full text-left text-xs min-w-[620px]">
             <thead className="bg-surface-admin/60 text-espresso/50 uppercase text-[10px] tracking-wider font-semibold border-b border-admin-border">
               <tr>
-                <th className="px-5 py-3">Reference / Patron</th>
-                <th className="px-5 py-3">Ritual</th>
-                <th className="px-5 py-3">Schedule</th>
-                <th className="px-5 py-3">Status</th>
-                <th className="px-5 py-3 text-right">Action</th>
+                <th className="px-4 sm:px-5 py-3">Reference / Patron</th>
+                <th className="px-4 sm:px-5 py-3">Ritual</th>
+                <th className="px-4 sm:px-5 py-3">Schedule</th>
+                <th className="px-4 sm:px-5 py-3">Status</th>
+                <th className="px-4 sm:px-5 py-3 text-right">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-admin-border text-espresso">
               {recentBookings.map((b: any) => (
                 <tr key={b._id.toString()} className="hover:bg-surface-admin/40 transition-colors">
-                  <td className="px-5 py-3.5">
+                  <td className="px-4 sm:px-5 py-3.5">
                     <p className="font-mono font-bold text-primary">{b.bookingReference}</p>
                     <p className="text-[11px] text-espresso/70 mt-0.5">{b.customer.fullName}</p>
                   </td>
-                  <td className="px-5 py-3.5 font-medium">{b.service.serviceName}</td>
-                  <td className="px-5 py-3.5 text-espresso/80">
+                  <td className="px-4 sm:px-5 py-3.5 font-medium">{b.service.serviceName}</td>
+                  <td className="px-4 sm:px-5 py-3.5 text-espresso/80">
                     <p>{b.appointment.preferredDate}</p>
                     <p className="text-[11px] text-espresso/60">{b.appointment.preferredTime}</p>
                   </td>
-                  <td className="px-5 py-3.5">
+                  <td className="px-4 sm:px-5 py-3.5">
                     <span
                       className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider border ${getStatusPill(
                         b.status
@@ -185,7 +185,7 @@ export default async function AdminOverviewPage() {
                       {b.status}
                     </span>
                   </td>
-                  <td className="px-5 py-3.5 text-right">
+                  <td className="px-4 sm:px-5 py-3.5 text-right">
                     <Link
                       href={`/admin/bookings?selected=${b._id.toString()}`}
                       className="text-xs font-semibold text-primary hover:text-secondary-dark"
@@ -207,7 +207,7 @@ export default async function AdminOverviewPage() {
       </div>
 
       {/* Concierge Operational Protocol */}
-      <div className="bg-primary-dark text-surface rounded-lg p-5 shadow-card text-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-primary-dark text-surface rounded-lg p-4 sm:p-5 shadow-card text-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="space-y-1">
           <p className="font-serif text-base text-secondary-fixed">Concierge Protocol</p>
           <p className="text-surface/80 font-light leading-relaxed max-w-3xl">
@@ -225,4 +225,3 @@ export default async function AdminOverviewPage() {
     </div>
   );
 }
-

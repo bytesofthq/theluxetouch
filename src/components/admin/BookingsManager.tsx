@@ -104,14 +104,14 @@ export function BookingsManager({
   return (
     <div className="space-y-6">
       {/* Filters & Search Toolbar */}
-      <div className="bg-white p-4 rounded-lg border border-admin-border shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white p-3 sm:p-4 rounded-lg border border-admin-border shadow-card flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
         {/* Status Tabs */}
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 max-w-full no-scrollbar flex-nowrap sm:flex-wrap">
           {statuses.map((st) => (
             <button
               key={st}
               onClick={() => setSelectedStatus(st)}
-              className={`px-3 py-1.5 rounded text-xs font-semibold capitalize transition-colors ${
+              className={`px-3 py-1.5 rounded text-xs font-semibold capitalize transition-colors flex-shrink-0 ${
                 selectedStatus === st
                   ? "bg-primary text-surface shadow-sm"
                   : "bg-surface-admin text-espresso/70 hover:bg-surface-admin/80"
@@ -123,7 +123,7 @@ export function BookingsManager({
         </div>
 
         {/* Search */}
-        <div className="relative w-full sm:w-72">
+        <div className="relative w-full md:w-72 flex-shrink-0">
           <input
             type="text"
             placeholder="Search by name, ref, phone..."
@@ -137,8 +137,8 @@ export function BookingsManager({
 
       {/* Bookings Table */}
       <div className="bg-white rounded-lg border border-admin-border shadow-card overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
+        <div className="overflow-x-auto w-full">
+          <table className="w-full text-left text-xs min-w-[720px]">
             <thead className="bg-surface-admin text-espresso/50 uppercase text-[10px] tracking-wider font-semibold border-b border-admin-border">
               <tr>
                 <th className="px-5 py-3.5">Reference</th>
@@ -207,20 +207,20 @@ export function BookingsManager({
         )}
       </div>
 
-      {/* 480px Slide-Over Detail Drawer */}
+      {/* Responsive Slide-Over Detail Drawer */}
       {selectedBooking && (
-        <div className="fixed inset-0 z-50 overflow-hidden bg-espresso/20 backdrop-blur-sm flex justify-end">
+        <div className="fixed inset-0 z-50 overflow-hidden bg-espresso/40 backdrop-blur-sm flex justify-end">
           <div
-            className="w-full max-w-[480px] bg-white h-full shadow-2xl border-l border-admin-border flex flex-col justify-between overflow-y-auto"
+            className="w-full sm:max-w-[480px] bg-white h-full shadow-2xl border-l border-admin-border flex flex-col justify-between overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Drawer Header */}
-            <div className="p-6 border-b border-admin-border flex items-center justify-between sticky top-0 bg-white z-10">
+            <div className="p-4 sm:p-6 border-b border-admin-border flex items-center justify-between sticky top-0 bg-white z-10">
               <div>
                 <span className="text-[10px] uppercase font-bold tracking-widest text-secondary">
                   RESERVATION DETAIL
                 </span>
-                <h3 className="font-mono text-xl font-bold text-primary mt-0.5">
+                <h3 className="font-mono text-lg sm:text-xl font-bold text-primary mt-0.5">
                   {selectedBooking.bookingReference}
                 </h3>
               </div>
@@ -234,9 +234,9 @@ export function BookingsManager({
             </div>
 
             {/* Drawer Content */}
-            <div className="p-6 space-y-6 flex-1 text-xs text-espresso">
+            <div className="p-4 sm:p-6 space-y-5 sm:space-y-6 flex-1 text-xs text-espresso">
               {/* Status Selector */}
-              <div className="p-4 rounded-lg bg-surface-admin border border-admin-border space-y-2">
+              <div className="p-3.5 sm:p-4 rounded-lg bg-surface-admin border border-admin-border space-y-2">
                 <label className="block text-[10px] uppercase tracking-wider font-bold text-espresso/60">
                   Update Appointment Status
                 </label>
@@ -261,18 +261,18 @@ export function BookingsManager({
                 <h4 className="text-[11px] uppercase tracking-wider font-bold text-espresso/50">
                   Patron Information
                 </h4>
-                <div className="p-4 bg-surface-admin/50 rounded border border-admin-border space-y-2">
+                <div className="p-3.5 sm:p-4 bg-surface-admin/50 rounded border border-admin-border space-y-2">
                   <p className="text-sm font-bold text-espresso">
                     {selectedBooking.customer.fullName}
                   </p>
                   <p className="text-espresso/70 flex items-center gap-2">
-                    <Phone className="w-3.5 h-3.5 text-secondary" />
+                    <Phone className="w-3.5 h-3.5 text-secondary flex-shrink-0" />
                     {selectedBooking.customer.phone}
                   </p>
                   {selectedBooking.customer.email && (
-                    <p className="text-espresso/70 flex items-center gap-2">
-                      <Mail className="w-3.5 h-3.5 text-secondary" />
-                      {selectedBooking.customer.email}
+                    <p className="text-espresso/70 flex items-center gap-2 truncate">
+                      <Mail className="w-3.5 h-3.5 text-secondary flex-shrink-0" />
+                      <span className="truncate">{selectedBooking.customer.email}</span>
                     </p>
                   )}
 
@@ -311,16 +311,16 @@ export function BookingsManager({
                 <h4 className="text-[11px] uppercase tracking-wider font-bold text-espresso/50">
                   Ritual & Delivery Location
                 </h4>
-                <div className="p-4 bg-surface-admin/50 rounded border border-admin-border space-y-2.5">
-                  <div className="flex justify-between">
-                    <span className="text-espresso/60">Service:</span>
-                    <span className="font-semibold text-primary">
+                <div className="p-3.5 sm:p-4 bg-surface-admin/50 rounded border border-admin-border space-y-2.5">
+                  <div className="flex justify-between gap-2">
+                    <span className="text-espresso/60 flex-shrink-0">Service:</span>
+                    <span className="font-semibold text-primary text-right">
                       {selectedBooking.service.serviceName}
                     </span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-espresso/60">Quoted Pricing:</span>
-                    <span className="font-semibold text-secondary-dark">
+                  <div className="flex justify-between gap-2">
+                    <span className="text-espresso/60 flex-shrink-0">Quoted Pricing:</span>
+                    <span className="font-semibold text-secondary-dark text-right">
                       {selectedBooking.service.pricingSnapshot.amount
                         ? formatCurrency(
                             selectedBooking.service.pricingSnapshot.amount,
@@ -329,29 +329,29 @@ export function BookingsManager({
                         : "Quote required"}
                     </span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-espresso/60">Schedule:</span>
-                    <span className="font-medium">
+                  <div className="flex justify-between gap-2">
+                    <span className="text-espresso/60 flex-shrink-0">Schedule:</span>
+                    <span className="font-medium text-right">
                       {selectedBooking.appointment.preferredDate} at{" "}
                       {selectedBooking.appointment.preferredTime}
                     </span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-espresso/60">Venue Type:</span>
-                    <span className="font-medium capitalize">
+                  <div className="flex justify-between gap-2">
+                    <span className="text-espresso/60 flex-shrink-0">Venue Type:</span>
+                    <span className="font-medium capitalize text-right">
                       {selectedBooking.appointment.locationType}
                     </span>
                   </div>
                   <div className="pt-2 border-t border-admin-border">
                     <span className="text-espresso/60 block mb-1">Service Address:</span>
-                    <p className="font-medium leading-relaxed bg-white p-2.5 rounded border border-admin-border">
+                    <p className="font-medium leading-relaxed bg-white p-2.5 rounded border border-admin-border break-words">
                       {selectedBooking.appointment.address}
                     </p>
                   </div>
                   {selectedBooking.additionalNotes && (
                     <div className="pt-2">
                       <span className="text-espresso/60 block mb-1">Patron Notes:</span>
-                      <p className="italic text-espresso/80 bg-white p-2.5 rounded border border-admin-border">
+                      <p className="italic text-espresso/80 bg-white p-2.5 rounded border border-admin-border break-words">
                         &ldquo;{selectedBooking.additionalNotes}&rdquo;
                       </p>
                     </div>
@@ -373,7 +373,7 @@ export function BookingsManager({
                     className="w-full p-2.5 bg-white border border-admin-border rounded text-xs text-espresso focus:outline-none focus:ring-1 focus:ring-primary"
                   />
                   {selectedBooking.adminNotes && (
-                    <div className="p-3 bg-amber-50 text-amber-900 border border-amber-200 rounded text-xs font-light">
+                    <div className="p-3 bg-amber-50 text-amber-900 border border-amber-200 rounded text-xs font-light break-words">
                       <strong>Current Staff Note:</strong> {selectedBooking.adminNotes}
                     </div>
                   )}
@@ -404,10 +404,10 @@ export function BookingsManager({
             </div>
 
             {/* Drawer Footer */}
-            <div className="p-4 border-t border-admin-border bg-surface-admin flex justify-end">
+            <div className="p-4 sm:p-6 border-t border-admin-border bg-surface-admin flex justify-end">
               <button
                 onClick={() => setSelectedBooking(null)}
-                className="px-5 py-2 bg-white border border-admin-border rounded text-xs font-semibold hover:bg-surface-admin transition-colors"
+                className="w-full sm:w-auto px-5 py-2.5 bg-white border border-admin-border rounded text-xs font-semibold hover:bg-surface-admin transition-colors"
               >
                 Close Drawer
               </button>
@@ -418,4 +418,3 @@ export function BookingsManager({
     </div>
   );
 }
-

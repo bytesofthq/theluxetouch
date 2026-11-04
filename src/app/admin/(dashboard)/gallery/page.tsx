@@ -25,7 +25,7 @@ export default async function AdminGalleryPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       <div>
-        <h2 className="text-2xl font-serif text-primary">Lookbook & Gallery Management</h2>
+        <h2 className="text-xl sm:text-2xl font-serif text-primary">Lookbook & Gallery Management</h2>
         <p className="text-xs text-espresso/60 mt-0.5">
           Upload and organize curated high-resolution photography of bridal and beauty sessions.
         </p>
@@ -35,4 +35,3 @@ export default async function AdminGalleryPage() {
     </div>
   );
 }
-

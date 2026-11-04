@@ -22,21 +22,21 @@ export function SettingsManager({ initialSettings }: { initialSettings: any }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
+    <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 max-w-4xl">
       {savedSuccess && (
-        <div className="p-4 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-lg text-xs flex items-center gap-2">
+        <div className="p-3.5 sm:p-4 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-lg text-xs flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
           <span>Business settings successfully updated across website and concierge system!</span>
         </div>
       )}
 
       {/* Brand & Identity */}
-      <div className="bg-white p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-4 text-xs text-espresso">
-        <h3 className="font-serif text-2xl text-primary font-normal border-b border-admin-border pb-3">
+      <div className="bg-white p-4 sm:p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-4 text-xs text-espresso">
+        <h3 className="font-serif text-xl sm:text-2xl text-primary font-normal border-b border-admin-border pb-3">
           Brand & Identity
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
           <div>
             <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
               Brand Trade Name
@@ -64,12 +64,12 @@ export function SettingsManager({ initialSettings }: { initialSettings: any }) {
       </div>
 
       {/* Direct Contact Channels */}
-      <div className="bg-white p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-4 text-xs text-espresso">
-        <h3 className="font-serif text-2xl text-primary font-normal border-b border-admin-border pb-3">
+      <div className="bg-white p-4 sm:p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-4 text-xs text-espresso">
+        <h3 className="font-serif text-xl sm:text-2xl text-primary font-normal border-b border-admin-border pb-3">
           Concierge Communication
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
           <div>
             <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
               Public Telephone Number
@@ -141,12 +141,12 @@ export function SettingsManager({ initialSettings }: { initialSettings: any }) {
       </div>
 
       {/* Operating Hours */}
-      <div className="bg-white p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-4 text-xs text-espresso">
-        <h3 className="font-serif text-2xl text-primary font-normal border-b border-admin-border pb-3">
+      <div className="bg-white p-4 sm:p-6 sm:p-8 rounded-lg border border-admin-border shadow-card space-y-4 text-xs text-espresso">
+        <h3 className="font-serif text-xl sm:text-2xl text-primary font-normal border-b border-admin-border pb-3">
           Operating Hours & Dispatch
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
           <div>
             <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
               Weekday Schedule
@@ -187,7 +187,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: any }) {
         <button
           type="submit"
           disabled={isSaving}
-          className="px-8 py-3 bg-primary text-surface rounded text-xs uppercase tracking-wider font-semibold hover:bg-primary-dark transition-colors shadow-md flex items-center gap-2"
+          className="w-full sm:w-auto justify-center px-8 py-3 bg-primary text-surface rounded text-xs uppercase tracking-wider font-semibold hover:bg-primary-dark transition-colors shadow-md flex items-center gap-2"
         >
           <Save className="w-4 h-4" />
           {isSaving ? "Saving Settings..." : "Save Business Settings"}
@@ -196,4 +196,3 @@ export function SettingsManager({ initialSettings }: { initialSettings: any }) {
     </form>
   );
 }
-

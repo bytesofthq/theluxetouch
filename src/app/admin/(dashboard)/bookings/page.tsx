@@ -49,14 +49,16 @@ export default async function AdminBookingsPage({
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       <div>
-        <h2 className="text-2xl font-serif text-primary">Bookings Management & Ledger</h2>
+        <h2 className="text-xl sm:text-2xl font-serif text-primary">Patron Bookings & Enquiries</h2>
         <p className="text-xs text-espresso/60 mt-0.5">
-          Review, communicate, and update statuses for patron appointment enquiries.
+          Review, manage, confirm, and update concierge appointments and private venue visits.
         </p>
       </div>
 
-      <BookingsManager initialBookings={serializedBookings} initialSelectedId={selected} />
+      <BookingsManager
+        initialBookings={serializedBookings}
+        initialSelectedId={selected}
+      />
     </div>
   );
 }
-

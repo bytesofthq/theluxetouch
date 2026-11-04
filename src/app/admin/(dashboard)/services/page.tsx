@@ -36,7 +36,7 @@ export default async function AdminServicesPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       <div>
-        <h2 className="text-2xl font-serif text-primary">Services Catalogue Management</h2>
+        <h2 className="text-xl sm:text-2xl font-serif text-primary">Services Catalogue Management</h2>
         <p className="text-xs text-espresso/60 mt-0.5">
           Add, edit, reprice, or feature in-home beauty rituals and departments.
         </p>
@@ -49,4 +49,3 @@ export default async function AdminServicesPage() {
     </div>
   );
 }
-

@@ -99,64 +99,66 @@ export function ServicesManager({
       },
       durationMinutes: Number(durationMinutes),
       isFeatured,
+      isActive: editingService ? editingService.isActive : true,
     };
 
     if (editingService) {
       const res = await updateService(editingService._id, payload);
       if (res.success) {
-        const cat = categories.find((c) => c._id === categoryId);
+        const catObj = categories.find((c) => c._id === categoryId);
         setServices(
           services.map((s) =>
             s._id === editingService._id
-              ? { ...s, ...payload, categoryName: cat?.name || "" }
+              ? {
+                  ...s,
+                  ...payload,
+                  categoryName: catObj?.name || s.categoryName,
+                }
               : s
           )
         );
         setIsModalOpen(false);
       }
     } else {
-      const res = await createService({ ...payload, isActive: true });
+      const res = await createService(payload);
       if (res.success) {
-        const cat = categories.find((c) => c._id === categoryId);
+        const catObj = categories.find((c) => c._id === categoryId);
         setServices([
-          ...services,
           {
-            ...payload,
-            _id: res.service._id,
-            categoryName: cat?.name || "",
-            isActive: true,
+            ...res.service,
+            categoryName: catObj?.name || "Uncategorized",
           },
+          ...services,
         ]);
         setIsModalOpen(false);
       }
     }
+
     setIsSaving(false);
   };
 
-  const handleToggleActive = async (service: ServiceItem) => {
-    const updatedStatus = !service.isActive;
-    const res = await updateService(service._id, { isActive: updatedStatus });
+  const handleToggleFeatured = async (service: ServiceItem) => {
+    const updated = !service.isFeatured;
+    const res = await updateService(service._id, { isFeatured: updated });
     if (res.success) {
       setServices(
-        services.map((s) => (s._id === service._id ? { ...s, isActive: updatedStatus } : s))
+        services.map((s) => (s._id === service._id ? { ...s, isFeatured: updated } : s))
       );
     }
   };
 
-  const handleToggleFeatured = async (service: ServiceItem) => {
-    const updatedFeatured = !service.isFeatured;
-    const res = await updateService(service._id, { isFeatured: updatedFeatured });
+  const handleToggleActive = async (service: ServiceItem) => {
+    const updated = !service.isActive;
+    const res = await updateService(service._id, { isActive: updated });
     if (res.success) {
       setServices(
-        services.map((s) =>
-          s._id === service._id ? { ...s, isFeatured: updatedFeatured } : s
-        )
+        services.map((s) => (s._id === service._id ? { ...s, isActive: updated } : s))
       );
     }
   };
 
   const handleDelete = async (id: string, serviceName: string) => {
-    if (confirm(`Are you sure you want to remove "${serviceName}" from the catalogue?`)) {
+    if (confirm(`Are you sure you want to delete "${serviceName}"?`)) {
       const res = await deleteService(id);
       if (res.success) {
         setServices(services.filter((s) => s._id !== id));
@@ -175,12 +177,12 @@ export function ServicesManager({
   return (
     <div className="space-y-6">
       {/* Action Bar */}
-      <div className="bg-white p-4 rounded-lg border border-admin-border shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-white p-3 sm:p-4 rounded-lg border border-admin-border shadow-card flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4">
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 max-w-full no-scrollbar flex-nowrap sm:flex-wrap">
           <button
             onClick={() => setSelectedCat("all")}
-            className={`px-3 py-1.5 rounded text-xs font-semibold transition-colors ${
+            className={`px-3 py-1.5 rounded text-xs font-semibold transition-colors flex-shrink-0 ${
               selectedCat === "all"
                 ? "bg-primary text-surface shadow-sm"
                 : "bg-surface-admin text-espresso/70 hover:bg-surface-admin/80"
@@ -192,7 +194,7 @@ export function ServicesManager({
             <button
               key={c._id}
               onClick={() => setSelectedCat(c._id)}
-              className={`px-3 py-1.5 rounded text-xs font-semibold transition-colors ${
+              className={`px-3 py-1.5 rounded text-xs font-semibold transition-colors flex-shrink-0 ${
                 selectedCat === c._id
                   ? "bg-primary text-surface shadow-sm"
                   : "bg-surface-admin text-espresso/70 hover:bg-surface-admin/80"
@@ -203,7 +205,7 @@ export function ServicesManager({
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 flex-shrink-0">
           <div className="relative w-full sm:w-60">
             <input
               type="text"
@@ -217,7 +219,7 @@ export function ServicesManager({
 
           <button
             onClick={openCreateModal}
-            className="px-4 py-2 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm flex items-center gap-1.5 flex-shrink-0"
+            className="w-full sm:w-auto justify-center px-4 py-2 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm flex items-center gap-1.5 flex-shrink-0"
           >
             <Plus className="w-3.5 h-3.5" /> New Service
           </button>
@@ -226,8 +228,8 @@ export function ServicesManager({
 
       {/* Services Table */}
       <div className="bg-white rounded-lg border border-admin-border shadow-card overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
+        <div className="overflow-x-auto w-full">
+          <table className="w-full text-left text-xs min-w-[720px]">
             <thead className="bg-surface-admin text-espresso/50 uppercase text-[10px] tracking-wider font-semibold border-b border-admin-border">
               <tr>
                 <th className="px-5 py-3.5">Treatment Name</th>
@@ -316,15 +318,16 @@ export function ServicesManager({
 
       {/* Modal Dialog for Add / Edit */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-espresso/40 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg border border-admin-border shadow-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8">
-            <div className="flex items-center justify-between border-b border-admin-border pb-4 mb-6">
-              <h3 className="font-serif text-2xl text-primary font-normal">
+        <div className="fixed inset-0 z-50 bg-espresso/40 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg border border-admin-border shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto p-4 sm:p-6 sm:p-8 my-auto">
+            <div className="flex items-center justify-between border-b border-admin-border pb-3 sm:pb-4 mb-4 sm:mb-6">
+              <h3 className="font-serif text-xl sm:text-2xl text-primary font-normal">
                 {editingService ? "Edit Service Ritual" : "Create New Service"}
               </h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-espresso/50 hover:text-espresso"
+                className="p-1 rounded text-espresso/50 hover:text-espresso hover:bg-surface-admin transition-colors"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -345,7 +348,7 @@ export function ServicesManager({
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                 <div>
                   <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
                     Department *
@@ -376,7 +379,7 @@ export function ServicesManager({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                 <div>
                   <label className="block text-[11px] uppercase font-bold text-espresso/60 mb-1">
                     Pricing Mode *
@@ -447,18 +450,18 @@ export function ServicesManager({
                 </label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-6 border-t border-admin-border">
+              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2.5 sm:gap-3 pt-5 border-t border-admin-border">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 border border-admin-border rounded text-xs font-semibold hover:bg-surface-admin transition-colors"
+                  className="w-full sm:w-auto px-4 py-2.5 border border-admin-border rounded text-xs font-semibold hover:bg-surface-admin transition-colors text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSaving}
-                  className="px-6 py-2 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-50"
+                  className="w-full sm:w-auto px-6 py-2.5 bg-primary text-surface rounded text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm disabled:opacity-50 text-center"
                 >
                   {isSaving ? "Saving..." : editingService ? "Update Service" : "Create Service"}
                 </button>
@@ -470,4 +473,3 @@ export function ServicesManager({
     </div>
   );
 }
-

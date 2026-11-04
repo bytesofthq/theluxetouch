@@ -25,7 +25,7 @@ export default async function AdminContentPage() {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       <div>
-        <h2 className="text-2xl font-serif text-primary">Website Content Management System</h2>
+        <h2 className="text-xl sm:text-2xl font-serif text-primary">Website Content Management System</h2>
         <p className="text-xs text-espresso/60 mt-0.5">
           Modify live copy, homepage announcements, brand narratives, and client testimonials.
         </p>
@@ -38,4 +38,3 @@ export default async function AdminContentPage() {
     </div>
   );
 }
-
