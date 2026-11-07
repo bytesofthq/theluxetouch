@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Exclude site URLs from Netlify secret scanner to prevent build failure
+  SECRETS_SCAN_OMIT_KEYS = "BETTER_AUTH_URL,NEXT_PUBLIC_SITE_URL,URL,DEPLOY_URL,DEPLOY_PRIME_URL"
