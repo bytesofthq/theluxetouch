@@ -104,7 +104,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="text-secondary-fixed hover:underline transition-colors"
             >
-              bytesoft
+              ByteSoft
             </a>
           </p>
           <div className="flex items-center gap-6">
