@@ -94,8 +94,19 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-surface/60 gap-4">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-surface/60 gap-4 text-center md:text-left">
           <p>© {new Date().getFullYear()} The Luxe Touch. All rights reserved.</p>
+          <p>
+            Designed and developed by{" "}
+            <a
+              href="https://bytesoft.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-secondary-fixed hover:underline transition-colors"
+            >
+              bytesoft
+            </a>
+          </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy-policy" className="hover:text-surface transition-colors">
               Privacy Policy
