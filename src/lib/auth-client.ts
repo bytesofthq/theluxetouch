@@ -4,7 +4,12 @@ export const authClient = createAuthClient({
   baseURL:
     typeof window !== "undefined"
       ? window.location.origin
-      : process.env.NEXT_PUBLIC_SITE_URL || process.env.URL || "http://localhost:3000",
+      : process.env.NEXT_PUBLIC_SITE_URL ||
+        process.env.BETTER_AUTH_URL ||
+        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+        process.env.RENDER_EXTERNAL_URL ||
+        process.env.URL ||
+        "http://localhost:3000",
 });
 
 export const { signIn, signOut, useSession } = authClient;
