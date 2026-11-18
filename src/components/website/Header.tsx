@@ -59,6 +59,12 @@ export function Header() {
             About
           </Link>
           <Link
+            href="/our-promise"
+            className="text-xs uppercase tracking-[0.16em] font-medium text-espresso/80 hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-secondary hover:after:w-full after:transition-all after:duration-300"
+          >
+            Our Promise
+          </Link>
+          <Link
             href="/contact"
             className="text-xs uppercase tracking-[0.16em] font-medium text-espresso/80 hover:text-primary transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-secondary hover:after:w-full after:transition-all after:duration-300"
           >
@@ -114,6 +120,13 @@ export function Header() {
             className="text-sm font-serif text-espresso/80 hover:text-primary py-1"
           >
             About The Atelier
+          </Link>
+          <Link
+            href="/our-promise"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-sm font-serif text-espresso/80 hover:text-primary py-1"
+          >
+            Our Promise
           </Link>
           <Link
             href="/contact"

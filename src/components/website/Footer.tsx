@@ -53,6 +53,9 @@ export function Footer() {
             <Link href="/about" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
               About The Atelier
             </Link>
+            <Link href="/our-promise" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
+              Our Promise
+            </Link>
             <Link href="/book" className="text-sm text-secondary-fixed font-medium hover:underline">
               Book Appointment
             </Link>

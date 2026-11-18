@@ -122,10 +122,10 @@ export default function AboutPage() {
                 Book Your Ritual
               </Link>
               <Link
-                href="/gallery"
+                href="/our-promise"
                 className="px-6 py-3 bg-transparent text-surface border border-secondary/50 text-xs uppercase tracking-[0.16em] font-semibold rounded hover:bg-secondary/10 transition-colors"
               >
-                Explore Lookbook
+                Our Promise
               </Link>
             </div>
           </div>

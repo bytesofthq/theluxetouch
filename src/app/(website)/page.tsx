@@ -163,11 +163,8 @@ export default async function HomePage() {
             </h2>
 
             <p className="text-base sm:text-lg text-espresso/80 leading-relaxed font-light">
-              We transcend conventional salons by transporting the entire haute couture vanity
-              experience directly to your residence, suite, or private dressing quarters. Every
-              implement is sterile-sealed, every botanical formula crafted for high-performance
-              sensorial renewal, and every aesthetician bound by our strict oath of absolute
-              discretion.
+              Consider this your invitation to slow down. From little beauty refreshes to
+              head-to-toe rituals, enjoy thoughtful service without the trip to a salon.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 pt-4 text-espresso">
