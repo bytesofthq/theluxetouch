@@ -39,7 +39,10 @@ export default function PrivacyPolicyPage() {
         <h3 className="font-serif text-xl text-primary font-normal">4. Contact Us</h3>
         <p>
           If you have questions about your data or want past records removed, email us at{" "}
-          <em>concierge@theluxetouch.com</em>.
+          <a href="mailto:theluxetouch4@gmail.com" className="text-primary underline">
+            theluxetouch4@gmail.com
+          </a>
+          .
         </p>
       </div>
     </div>

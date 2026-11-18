@@ -3,7 +3,7 @@
 import { MessageCircle } from "lucide-react";
 
 export function WhatsAppFloatingButton({
-  phoneNumber = "919876543210",
+  phoneNumber = "919196002825",
   message = "Hello The Luxe Touch! I would like to book a beauty service at home.",
 }: {
   phoneNumber?: string;

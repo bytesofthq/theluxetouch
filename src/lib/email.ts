@@ -11,7 +11,7 @@ interface BookingNotificationParams {
 export async function sendBookingNotificationEmail(params: BookingNotificationParams): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
-  const fromEmail = process.env.EMAIL_FROM || "concierge@theluxetouch.com";
+  const fromEmail = process.env.EMAIL_FROM || "theluxetouch4@gmail.com";
 
   if (!apiKey || !adminEmail) {
     // Optional integration fails gracefully when unconfigured

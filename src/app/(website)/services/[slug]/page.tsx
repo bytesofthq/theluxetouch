@@ -134,7 +134,7 @@ export default async function ServiceDetailPage({
               </Link>
 
               <a
-                href={`https://wa.me/919876543210?text=${encodeURIComponent(
+                href={`https://wa.me/919196002825?text=${encodeURIComponent(
                   `Hello The Luxe Touch! I would like to know more about "${service.name}".`
                 )}`}
                 target="_blank"

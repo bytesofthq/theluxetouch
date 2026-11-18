@@ -40,9 +40,9 @@ const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
     },
     logoUrl: { type: String, default: "/assets/branding/logo.jpeg" },
     contact: {
-      phone: { type: String, default: "+91 98765 43210" },
-      whatsappNumber: { type: String, default: "919876543210" },
-      email: { type: String, default: "concierge@theluxetouch.com" },
+      phone: { type: String, default: "+91 91960 02825" },
+      whatsappNumber: { type: String, default: "919196002825" },
+      email: { type: String, default: "theluxetouch4@gmail.com" },
       addressNote: {
         type: String,
         default: "Delivered in the comfort of your home, suite, or private estate",
@@ -50,7 +50,7 @@ const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
     },
     serviceAreas: {
       type: [String],
-      default: ["Mumbai", "Bandra", "Juhu", "South Mumbai", "Powai", "Thane"],
+      default: ["Lucknow", "Gomti Nagar", "Hazratganj", "Indira Nagar", "Aliganj", "Aminabad"],
     },
     socialLinks: {
       instagram: { type: String, default: "https://instagram.com" },

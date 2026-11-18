@@ -104,7 +104,7 @@ export function BookingForm({
       locationType: submissionResult.formData.locationType,
     });
 
-    const whatsappUrl = generateWhatsAppLink("919876543210", whatsappMessage);
+    const whatsappUrl = generateWhatsAppLink("919196002825", whatsappMessage);
 
     return (
       <div className="bg-surface-container-low p-8 sm:p-12 rounded ring-1 ring-secondary/30 shadow-xl max-w-2xl mx-auto text-center">
@@ -226,7 +226,7 @@ export function BookingForm({
             <input
               type="tel"
               {...register("phone")}
-              placeholder="+91 98765 43210"
+              placeholder="+91 91960 02825"
               className="w-full px-4 py-2.5 rounded bg-surface border border-secondary/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
             />
             {errors.phone && (
@@ -365,7 +365,7 @@ export function BookingForm({
           <textarea
             rows={2}
             {...register("address")}
-            placeholder="e.g. Tower 3, Apt 14B, Palm Heights, Bandra West, Mumbai"
+            placeholder="e.g. Flat 14B, Tower 3, Eldeco Utopia, Gomti Nagar, Lucknow"
             className="w-full px-4 py-2.5 rounded bg-surface border border-secondary/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
           />
           {errors.address && (

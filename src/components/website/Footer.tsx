@@ -69,12 +69,14 @@ export function Footer() {
             </span>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <Phone className="w-4 h-4 text-secondary" />
-              <span>+91 98765 43210</span>
+              <a href="tel:+919196002825" className="hover:text-secondary-fixed transition-colors">
+                +91 91960 02825
+              </a>
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <MessageCircle className="w-4 h-4 text-secondary" />
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/919196002825"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-secondary-fixed transition-colors"
@@ -84,11 +86,16 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <Mail className="w-4 h-4 text-secondary" />
-              <span>concierge@theluxetouch.com</span>
+              <a
+                href="mailto:theluxetouch4@gmail.com"
+                className="hover:text-secondary-fixed transition-colors"
+              >
+                theluxetouch4@gmail.com
+              </a>
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <MapPin className="w-4 h-4 text-secondary" />
-              <span>Mumbai & nearby areas (at your home)</span>
+              <span>Lucknow & nearby areas (at your home)</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <Clock className="w-4 h-4 text-secondary" />
@@ -117,9 +124,6 @@ export function Footer() {
             </Link>
             <Link href="/terms" className="hover:text-surface transition-colors">
               Terms of Service
-            </Link>
-            <Link href="/admin/login" className="hover:text-secondary-fixed transition-colors">
-              Staff Portal
             </Link>
           </div>
         </div>

@@ -11,11 +11,11 @@ export default async function AdminSettingsPage() {
     brandName: "The Luxè Touch",
     tagline: "Where Beauty Meets a Touch of Luxury.",
     contact: {
-      phone: "+91 98765 43210",
-      whatsappNumber: "919876543210",
-      email: "concierge@theluxetouch.com",
+      phone: "+91 91960 02825",
+      whatsappNumber: "919196002825",
+      email: "theluxetouch4@gmail.com",
     },
-    serviceAreas: ["Mumbai", "Bandra", "Juhu", "South Mumbai", "Powai", "Thane"],
+    serviceAreas: ["Lucknow", "Gomti Nagar", "Hazratganj", "Indira Nagar", "Aliganj", "Aminabad"],
     businessHours: {
       weekdays: "9:00 AM - 6:00 PM",
       weekends: "9:00 AM - 6:00 PM",

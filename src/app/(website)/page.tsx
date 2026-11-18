@@ -287,87 +287,101 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 05: WHY THE LUXE TOUCH (Split Emerald / Privilege Charter) */}
-      <section className="w-full bg-primary text-surface py-20 relative overflow-hidden">
-        <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Visual with Gold Border Flourish */}
+      {/* SECTION 05: WHY CLIENTS TRUST US */}
+      <section className="w-full bg-primary text-surface py-20 md:py-28 relative overflow-hidden">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 18% 20%, #d4af37 0%, transparent 42%), radial-gradient(circle at 88% 78%, #d4af37 0%, transparent 36%)",
+          }}
+        />
+        <div className="max-w-[1320px] mx-auto px-6 md:px-8 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+            {/* Editorial image collage */}
             <div className="lg:col-span-6 relative">
-              <div className="relative w-full aspect-[4/5] rounded overflow-hidden ring-1 ring-secondary/50 shadow-2xl">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgid-YWbrsgXXl2LLMi17woK6G7qNpq51kiFD0th10zC1isGiancuF1ESJ2ZOYHV7WjnRyQGZDDHc6SZ1GbRt7uU8q0XwDDC1CNcFyqwjqpppdDxXe6rVFWuk7_ZbXtocGs2GRQPuSlUGAZ6KKMSCiaKL4Xc9IxLRpfx28YBpgPLQd0I3b9A3jAJLaC7Az7k4b9QaOIZ7UlFkLn5GY98usR7MVvUaPHKL2I-wJmtM"
-                  alt="Private Bridal Consultation Chamber"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 hidden sm:block p-6 bg-primary-dark rounded ring-1 ring-secondary/40 shadow-xl max-w-xs text-surface">
-                <p className="font-serif text-xl text-secondary-fixed mb-1 font-light">
-                  Our Promise
-                </p>
-                <p className="text-xs text-surface/80 font-light leading-relaxed">
-                  Every stylist arrives with fresh sheets, clean tools, and everything needed for
-                  your service.
+              <div className="relative max-w-lg mx-auto lg:mx-0 lg:max-w-none">
+                <div className="relative w-[78%] aspect-[4/5] overflow-hidden">
+                  <Image
+                    src="/assets/branding/why-facial.jpg"
+                    alt="Facial treatment with serum and brush"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 80vw, 40vw"
+                  />
+                </div>
+                <div className="absolute right-0 bottom-[-1.5rem] sm:bottom-8 w-[48%] aspect-[3/4] overflow-hidden ring-4 ring-primary shadow-2xl">
+                  <Image
+                    src="/assets/branding/why-makeup.jpg"
+                    alt="Relaxing facial massage"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 45vw, 22vw"
+                  />
+                </div>
+                <div className="absolute -left-3 top-10 hidden sm:block w-px h-28 bg-secondary/60" />
+                <p className="mt-10 sm:mt-6 lg:mt-4 lg:absolute lg:left-[82%] lg:top-0 lg:w-40 text-[11px] uppercase tracking-[0.18em] text-secondary-fixed/90 font-semibold leading-relaxed">
+                  Care that comes to you
                 </p>
               </div>
             </div>
 
-            {/* Numbered Pillars */}
-            <div className="lg:col-span-6 flex flex-col gap-8">
-              <div>
-                <span className="text-xs uppercase tracking-[0.25em] text-secondary-fixed font-semibold">
-                  WHY CHOOSE US
-                </span>
-                <h2 className="font-serif text-3xl sm:text-4xl text-surface tracking-tight mt-1">
-                  Why Clients Trust Us
-                </h2>
+            {/* Pillars */}
+            <div className="lg:col-span-6 flex flex-col">
+              <span className="text-xs uppercase tracking-[0.25em] text-secondary-fixed font-semibold">
+                WHY CHOOSE US
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-surface tracking-tight mt-3 leading-[1.15]">
+                Why clients trust us
+              </h2>
+              <p className="text-sm sm:text-base text-surface/70 font-light leading-relaxed mt-4 max-w-md">
+                Quiet setup, personal attention, and a team that treats your home like a private
+                studio.
+              </p>
+
+              <div className="mt-10 border-t border-secondary/25">
+                {[
+                  {
+                    n: "01",
+                    title: "At your doorstep",
+                    body: "No travel, no waiting rooms. We arrive a little early, set up quietly, and take care of everything in your home.",
+                  },
+                  {
+                    n: "02",
+                    title: "Personal care",
+                    body: "Every session starts with understanding your skin or hair needs, so we can choose the right products for you.",
+                  },
+                  {
+                    n: "03",
+                    title: "On time, every time",
+                    body: "We respect your schedule. Need more than one stylist for a big day? Just tell us — we can arrange it.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.n}
+                    className="group flex gap-5 sm:gap-6 py-6 border-b border-secondary/25"
+                  >
+                    <span className="font-serif text-2xl sm:text-3xl text-secondary-fixed font-light leading-none w-10 flex-shrink-0 pt-0.5 transition-transform duration-300 group-hover:translate-x-0.5">
+                      {item.n}
+                    </span>
+                    <div>
+                      <h3 className="font-serif text-xl sm:text-2xl text-surface tracking-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-surface/70 font-light leading-relaxed mt-1.5 max-w-md">
+                        {item.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="flex flex-col gap-4">
-                {/* Pillar 01 */}
-                <div className="flex gap-4 items-start p-5 bg-primary-dark/50 rounded ring-1 ring-secondary/20">
-                  <span className="font-serif text-3xl text-secondary-fixed font-light leading-none">
-                    01
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-xl text-surface mb-1">
-                      At Your Doorstep
-                    </h3>
-                    <p className="text-sm text-surface/80 font-light leading-relaxed">
-                      No travel, no waiting rooms. We arrive a little early, set up quietly, and take
-                      care of everything in your home.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Pillar 02 */}
-                <div className="flex gap-4 items-start p-5 bg-primary-dark/50 rounded ring-1 ring-secondary/20">
-                  <span className="font-serif text-3xl text-secondary-fixed font-light leading-none">
-                    02
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-xl text-surface mb-1">Personal Care</h3>
-                    <p className="text-sm text-surface/80 font-light leading-relaxed">
-                      Every session starts with understanding your skin or hair needs, so we can
-                      choose the right products for you.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Pillar 03 */}
-                <div className="flex gap-4 items-start p-5 bg-primary-dark/50 rounded ring-1 ring-secondary/20">
-                  <span className="font-serif text-3xl text-secondary-fixed font-light leading-none">
-                    03
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-xl text-surface mb-1">On Time, Every Time</h3>
-                    <p className="text-sm text-surface/80 font-light leading-relaxed">
-                      We respect your schedule. Need more than one stylist for a big day? Just tell
-                      us — we can arrange it.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <Link
+                href="/our-promise"
+                className="inline-flex items-center gap-2 mt-8 text-xs uppercase tracking-[0.16em] font-semibold text-secondary-fixed hover:text-surface transition-colors"
+              >
+                Read our promise <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
         </div>
@@ -479,7 +493,7 @@ export default async function HomePage() {
               Book Now
             </Link>
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919196002825"
               target="_blank"
               rel="noreferrer"
               className="px-8 py-3.5 bg-transparent text-surface border border-secondary/50 rounded text-xs uppercase tracking-[0.16em] font-semibold hover:bg-secondary/10 transition-colors"
