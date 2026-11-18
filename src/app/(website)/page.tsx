@@ -15,7 +15,7 @@ import {
   Clock,
   Lock,
 } from "lucide-react";
-import { formatCurrency } from "@/lib/utils";
+import { getServicePriceDisplay } from "@/lib/utils";
 
 export const revalidate = 60; // ISR cache for 60 seconds
 
@@ -156,68 +156,54 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 03: EXPLORE SERVICES (Soft Beige) */}
-      <section className="w-full bg-surface-container py-20" id="services">
+      {/* SECTION 03: CATEGORIES (no images) */}
+      <section className="w-full bg-surface py-20 md:py-24" id="services">
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
               <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-                FIND YOUR SERVICE
+                BROWSE BY CATEGORY
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight">
-                Discover our services.
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary tracking-tight mt-3 leading-[1.15]">
+                Our categories
               </h2>
-            </div>
-            <p className="text-sm text-espresso/70 max-w-md">
-              Choose from simple beauty refreshes to full treatments — all done at your home.
-            </p>
-          </div>
-
-          {/* 6 Category Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((cat: any, index: number) => (
-              <div
-                key={cat._id.toString()}
-                className="bg-surface rounded p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group ring-1 ring-secondary/20"
+              <p className="text-sm sm:text-base text-espresso/70 font-light leading-relaxed mt-4 max-w-sm">
+                Pick a category to open the full menu — skincare, hair, body, makeup, and waxing.
+              </p>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 mt-8 text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-secondary transition-colors"
               >
-                <div>
-                  <div className="relative w-full aspect-[4/3] rounded overflow-hidden mb-5 bg-surface-container-low">
-                    <Image
-                      src={
-                        index === 0
-                          ? "https://lh3.googleusercontent.com/aida-public/AB6AXuAuIdKNEn211NUyCuaAha3qeYAtTFbYRjY04uPr7LdEkC5my4pAaMlg5AzSRi-oCpsJY4yE8fIFLrcUdpUlGyatJetDUNjn5anvRsfnfg5rs5ylHQtOuUaDfidiU12XqlGTmgFiESThywgX1mI_06JPEOhOruKCC2LKdOnkoYIBVzCwOG9COusHZYX3bqQt5ow0Zhvyx79fZSgHmU1stU6iAao6h2iuO29XE41_B54"
-                          : index === 1
-                          ? "https://lh3.googleusercontent.com/aida-public/AB6AXuCJh2kNEN4ymgo2HcLqQNB8mpeG0-1pudla7MQCbhm9HnD4w4Sjbhtr54ZJ_Pd-tpq_GR2Rer198cC7Q2qJ4cvvnzKBnL_1466FlptAbEcrQpy9tYpO5QzksGLgj1nMyAOR5M0m2aAO-7fGM4ZkC1cEkAWdti_c58v-rhA8qrvsNADCOLwEMlg1QjM9NFc563KZGjMY7GdxfwjySN3IqDuaYpoG8M5s4PMp25MAt6M"
-                          : index === 2
-                          ? "https://lh3.googleusercontent.com/aida-public/AB6AXuBshvby-UJX3Udt_oWWX1ay8LWhi5ER60v9jHT67421pdStXgYEuMsu2aVzKCYJz9hWcgqdlTaZsgYTpWIb4QGKSnpo4dfBxNzdm6_759baM2e8IvIvw5G4BDkC_AWBDpcLGpTC9BleC3bVGKQ-TsVXFmhJscphccWV3YaeuyXL1n8v4Aef6l9wFDP5ibrwgucUyNDG0w0Ggt5rlzunCMvC_N4Yjd6_v8ll5UtmhgA"
-                          : "/assets/branding/image.png"
-                      }
-                      alt={cat.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <span className="absolute top-3 left-3 px-2.5 py-1 bg-surface/90 backdrop-blur-sm text-primary text-[10px] uppercase tracking-wider rounded font-semibold">
-                      Service 0{index + 1}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-2xl text-primary mb-2">{cat.name}</h3>
-                  <p className="text-sm text-espresso/70 mb-6 leading-relaxed font-light">
-                    {cat.description}
-                  </p>
-                </div>
-                <div className="flex items-center justify-between pt-4 border-t border-secondary/20">
-                  <span className="text-xs uppercase text-secondary font-semibold">
-                    View menu
+                View full menu <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <div className="lg:col-span-8 border-t border-secondary/30">
+              {categories.map((cat: any, index: number) => (
+                <Link
+                  key={cat._id.toString()}
+                  href={`/services#${cat.slug}`}
+                  className="group flex items-start sm:items-center gap-4 sm:gap-6 py-6 sm:py-7 border-b border-secondary/30 transition-colors hover:bg-surface-container-low/60 -mx-2 px-2 sm:mx-0 sm:px-0"
+                >
+                  <span className="font-serif text-2xl sm:text-3xl text-secondary font-light leading-none w-10 sm:w-12 flex-shrink-0 pt-1 sm:pt-0">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                  <Link
-                    href={`/services#${cat.slug}`}
-                    className="text-xs uppercase tracking-wider text-primary group-hover:text-secondary flex items-center gap-1 transition-colors font-semibold"
-                  >
-                    Explore <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-serif text-2xl sm:text-3xl text-primary tracking-tight group-hover:text-secondary transition-colors">
+                      {cat.name}
+                    </h3>
+                    {cat.description ? (
+                      <p className="text-sm text-espresso/65 font-light leading-relaxed mt-1.5 max-w-xl">
+                        {cat.description}
+                      </p>
+                    ) : null}
+                  </div>
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full border border-secondary/40 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-surface group-hover:border-primary transition-all mt-0.5">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -256,16 +242,29 @@ export default async function HomePage() {
                     )}
                   </div>
                   <h3 className="font-serif text-2xl text-primary mb-2">{service.name}</h3>
+                  {service.brandOrProducts ? (
+                    <p className="text-[11px] text-secondary font-medium mb-2">
+                      {service.brandOrProducts}
+                    </p>
+                  ) : null}
                   <p className="text-sm text-espresso/75 mb-6 font-light leading-relaxed">
                     {service.shortDescription}
                   </p>
-                  <div className="font-serif text-2xl text-secondary mb-6 font-light">
-                    {service.pricing.mode === "fixed" && service.pricing.amount
-                      ? formatCurrency(service.pricing.amount, service.pricing.currency)
-                      : service.pricing.mode === "starting_at" && service.pricing.amount
-                      ? `Starting at ${formatCurrency(service.pricing.amount, service.pricing.currency)}`
-                      : "Price on request"}
-                  </div>
+                  {(() => {
+                    const price = getServicePriceDisplay(service.pricing);
+                    return (
+                      <div className="mb-6">
+                        <div className="font-serif text-2xl text-secondary font-light">
+                          {price.label}
+                        </div>
+                        {price.regularLabel ? (
+                          <div className="text-sm text-espresso/45 line-through mt-0.5">
+                            {price.regularLabel}
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
                 </div>
 
                 <div className="flex items-center gap-3 pt-3 border-t border-secondary/20">

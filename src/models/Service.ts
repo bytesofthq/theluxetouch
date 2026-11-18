@@ -4,6 +4,8 @@ export interface IService extends Document {
   name: string;
   slug: string;
   categoryId: mongoose.Types.ObjectId;
+  subcategory?: string;
+  brandOrProducts?: string;
   shortDescription: string;
   description?: string;
   image?: {
@@ -14,6 +16,7 @@ export interface IService extends Document {
   pricing: {
     mode: "fixed" | "starting_at" | "quote_required" | "hidden";
     amount?: number;
+    regularAmount?: number;
     currency: string;
   };
   durationMinutes?: number;
@@ -33,6 +36,8 @@ const ServiceSchema: Schema<IService> = new Schema(
     name: { type: String, required: true, trim: true },
     slug: { type: String, required: true, unique: true, lowercase: true, trim: true, index: true },
     categoryId: { type: Schema.Types.ObjectId, ref: "ServiceCategory", required: true, index: true },
+    subcategory: { type: String, trim: true },
+    brandOrProducts: { type: String, trim: true },
     shortDescription: { type: String, required: true, trim: true },
     description: { type: String, trim: true },
     image: {
@@ -47,6 +52,7 @@ const ServiceSchema: Schema<IService> = new Schema(
         default: "fixed",
       },
       amount: { type: Number, min: 0 },
+      regularAmount: { type: Number, min: 0 },
       currency: { type: String, default: "INR" },
     },
     durationMinutes: { type: Number, min: 0 },
@@ -63,4 +69,3 @@ const ServiceSchema: Schema<IService> = new Schema(
 
 export const Service: Model<IService> =
   mongoose.models.Service || mongoose.model<IService>("Service", ServiceSchema);
-

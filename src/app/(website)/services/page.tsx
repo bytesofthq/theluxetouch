@@ -4,7 +4,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import { ServiceCategory } from "@/models/ServiceCategory";
 import { Service } from "@/models/Service";
 import { Clock, ArrowRight } from "lucide-react";
-import { formatCurrency } from "@/lib/utils";
+import { getServicePriceDisplay } from "@/lib/utils";
 
 export const revalidate = 60;
 
@@ -75,12 +75,12 @@ export default async function ServicesPage() {
                       className="bg-surface-container-low p-6 rounded flex flex-col justify-between ring-1 ring-secondary/20 hover:bg-surface-container transition-colors"
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center justify-between mb-3 gap-2">
                           <span className="text-[11px] uppercase text-secondary font-semibold">
-                            {cat.name}
+                            {service.subcategory || cat.name}
                           </span>
                           {service.durationMinutes && (
-                            <span className="text-[11px] text-espresso/70 bg-surface-container-high px-2 py-0.5 rounded flex items-center gap-1">
+                            <span className="text-[11px] text-espresso/70 bg-surface-container-high px-2 py-0.5 rounded flex items-center gap-1 flex-shrink-0">
                               <Clock className="w-3 h-3" />
                               {service.durationMinutes} Mins
                             </span>
@@ -91,20 +91,31 @@ export default async function ServicesPage() {
                           {service.name}
                         </h3>
 
+                        {service.brandOrProducts ? (
+                          <p className="text-[11px] text-secondary font-medium mb-2">
+                            {service.brandOrProducts}
+                          </p>
+                        ) : null}
+
                         <p className="text-sm text-espresso/75 mb-6 font-light leading-relaxed">
                           {service.shortDescription}
                         </p>
 
-                        <div className="font-serif text-2xl text-secondary mb-6 font-light">
-                          {service.pricing.mode === "fixed" && service.pricing.amount
-                            ? formatCurrency(service.pricing.amount, service.pricing.currency)
-                            : service.pricing.mode === "starting_at" && service.pricing.amount
-                            ? `Starting at ${formatCurrency(
-                                service.pricing.amount,
-                                service.pricing.currency
-                              )}`
-                            : "Quote required"}
-                        </div>
+                        {(() => {
+                          const price = getServicePriceDisplay(service.pricing);
+                          return (
+                            <div className="mb-6">
+                              <div className="font-serif text-2xl text-secondary font-light">
+                                {price.label}
+                              </div>
+                              {price.regularLabel ? (
+                                <div className="text-sm text-espresso/45 line-through mt-0.5">
+                                  {price.regularLabel}
+                                </div>
+                              ) : null}
+                            </div>
+                          );
+                        })()}
                       </div>
 
                       <div className="flex items-center gap-3 pt-3 border-t border-secondary/20">

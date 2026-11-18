@@ -13,3 +13,35 @@ export function formatCurrency(amount: number, currency: string = "INR"): string
   }).format(amount);
 }
 
+export type ServicePricing = {
+  mode: "fixed" | "starting_at" | "quote_required" | "hidden";
+  amount?: number;
+  regularAmount?: number;
+  currency?: string;
+};
+
+/** Returns display parts for service pricing (offer + optional struck regular). */
+export function getServicePriceDisplay(pricing: ServicePricing): {
+  label: string;
+  regularLabel?: string;
+  isQuote: boolean;
+} {
+  const currency = pricing.currency || "INR";
+
+  if (pricing.mode === "quote_required" || pricing.mode === "hidden" || !pricing.amount) {
+    return { label: "Price on request", isQuote: true };
+  }
+
+  const live =
+    pricing.mode === "starting_at"
+      ? `Starting at ${formatCurrency(pricing.amount, currency)}`
+      : formatCurrency(pricing.amount, currency);
+
+  const regularLabel =
+    pricing.regularAmount && pricing.regularAmount > pricing.amount
+      ? formatCurrency(pricing.regularAmount, currency)
+      : undefined;
+
+  return { label: live, regularLabel, isQuote: false };
+}
+

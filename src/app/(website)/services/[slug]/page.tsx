@@ -4,7 +4,7 @@ import Image from "next/image";
 import { connectToDatabase } from "@/lib/mongodb";
 import { Service } from "@/models/Service";
 import { Clock, ShieldCheck, Sparkles, ArrowLeft } from "lucide-react";
-import { formatCurrency } from "@/lib/utils";
+import { getServicePriceDisplay } from "@/lib/utils";
 import type { Metadata } from "next";
 
 export const revalidate = 60;
@@ -56,12 +56,20 @@ export default async function ServiceDetailPage({
           {/* Main Content */}
           <div className="md:col-span-7 flex flex-col gap-6">
             <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-              {(service.categoryId as any)?.name || "Beauty Service"}
+              {(service as any).subcategory ||
+                (service.categoryId as any)?.name ||
+                "Beauty Service"}
             </span>
 
             <h1 className="font-serif text-4xl sm:text-5xl text-primary tracking-tight">
               {service.name}
             </h1>
+
+            {(service as any).brandOrProducts ? (
+              <p className="text-sm text-secondary font-medium">
+                {(service as any).brandOrProducts}
+              </p>
+            ) : null}
 
             <p className="text-lg text-espresso/80 font-light leading-relaxed">
               {service.shortDescription}
@@ -103,13 +111,19 @@ export default async function ServiceDetailPage({
             <span className="text-xs uppercase text-secondary font-semibold tracking-wider">
               Price
             </span>
-            <div className="font-serif text-3xl text-primary mt-1 mb-6">
-              {service.pricing.mode === "fixed" && service.pricing.amount
-                ? formatCurrency(service.pricing.amount, service.pricing.currency)
-                : service.pricing.mode === "starting_at" && service.pricing.amount
-                ? `Starting at ${formatCurrency(service.pricing.amount, service.pricing.currency)}`
-                : "Price on request"}
-            </div>
+            {(() => {
+              const price = getServicePriceDisplay(service.pricing);
+              return (
+                <div className="mt-1 mb-6">
+                  <div className="font-serif text-3xl text-primary">{price.label}</div>
+                  {price.regularLabel ? (
+                    <div className="text-sm text-espresso/45 line-through mt-1">
+                      {price.regularLabel}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })()}
 
             <div className="flex flex-col gap-3">
               <Link
