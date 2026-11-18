@@ -27,7 +27,7 @@ export function Header() {
               The Luxe Touch
             </span>
             <span className="text-[10px] text-secondary uppercase tracking-[0.25em] font-semibold mt-1">
-              Private Haute Atelier
+              Beauty at Home
             </span>
           </div>
         </Link>
@@ -105,21 +105,21 @@ export function Header() {
             onClick={() => setMobileMenuOpen(false)}
             className="text-sm font-serif text-espresso/80 hover:text-primary py-1"
           >
-            Services & Rituals
+            Services
           </Link>
           <Link
             href="/gallery"
             onClick={() => setMobileMenuOpen(false)}
             className="text-sm font-serif text-espresso/80 hover:text-primary py-1"
           >
-            Artisanal Gallery
+            Gallery
           </Link>
           <Link
             href="/about"
             onClick={() => setMobileMenuOpen(false)}
             className="text-sm font-serif text-espresso/80 hover:text-primary py-1"
           >
-            About The Atelier
+            About Us
           </Link>
           <Link
             href="/our-promise"
@@ -133,7 +133,7 @@ export function Header() {
             onClick={() => setMobileMenuOpen(false)}
             className="text-sm font-serif text-espresso/80 hover:text-primary py-1"
           >
-            Concierge Contact
+            Contact
           </Link>
           <div className="pt-2">
             <Link
@@ -141,7 +141,7 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
               className="inline-flex w-full items-center justify-center px-4 py-3 bg-primary text-surface rounded text-xs uppercase tracking-[0.16em] font-semibold shadow-md"
             >
-              Book an In-Home Visit
+              Book a Visit
             </Link>
           </div>
         </div>

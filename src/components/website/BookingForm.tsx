@@ -93,7 +93,7 @@ export function BookingForm({
     const selectedServiceObj = services.find(
       (s) => s._id === submissionResult.formData?.serviceId
     );
-    const serviceName = selectedServiceObj?.name || "Bespoke Ritual";
+    const serviceName = selectedServiceObj?.name || "Beauty Service";
 
     const whatsappMessage = createBookingInquiryWhatsAppMessage({
       reference: submissionResult.reference,
@@ -113,7 +113,7 @@ export function BookingForm({
         </div>
 
         <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-          RESERVATION ENQUIRY RECEIVED
+          REQUEST RECEIVED
         </span>
 
         <h2 className="font-serif text-3xl sm:text-4xl text-primary mt-2 mb-3">
@@ -121,8 +121,8 @@ export function BookingForm({
         </h2>
 
         <p className="text-sm text-espresso/80 font-light leading-relaxed max-w-md mx-auto mb-6">
-          Thank you, <strong>{submissionResult.formData.fullName}</strong>. Your enquiry is now
-          being reviewed by our private concierge.
+          Thank you, <strong>{submissionResult.formData.fullName}</strong>. We are reviewing your
+          booking request now.
         </p>
 
         {/* Reference Badge */}
@@ -136,18 +136,18 @@ export function BookingForm({
         {/* Details Summary */}
         <div className="text-left bg-surface/60 p-6 rounded mb-8 space-y-2 text-sm text-espresso/80 border border-secondary/20 font-light">
           <div className="flex justify-between border-b border-secondary/10 pb-2">
-            <span className="text-espresso/60">Selected Ritual:</span>
+            <span className="text-espresso/60">Selected Service:</span>
             <span className="font-medium text-primary">{serviceName}</span>
           </div>
           <div className="flex justify-between border-b border-secondary/10 pb-2">
-            <span className="text-espresso/60">Preferred Schedule:</span>
+            <span className="text-espresso/60">Preferred Time:</span>
             <span className="font-medium text-primary">
               {submissionResult.formData.preferredDate} at{" "}
               {submissionResult.formData.preferredTime}
             </span>
           </div>
           <div className="flex justify-between border-b border-secondary/10 pb-2">
-            <span className="text-espresso/60">Venue Type:</span>
+            <span className="text-espresso/60">Location Type:</span>
             <span className="font-medium text-primary capitalize">
               {submissionResult.formData.locationType}
             </span>
@@ -161,9 +161,8 @@ export function BookingForm({
         </div>
 
         <div className="bg-secondary/15 p-4 rounded text-xs text-espresso/80 font-light mb-8 leading-relaxed">
-          <strong>Note:</strong> An enquiry does not constitute an instant confirmed booking. Our
-          concierge will verify aesthetician travel and scheduling, then reach out via WhatsApp or
-          phone to confirm.
+          <strong>Note:</strong> This request is not a confirmed booking yet. We will check
+          availability and contact you on WhatsApp or phone to confirm.
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -173,7 +172,7 @@ export function BookingForm({
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#25D366] text-white font-semibold rounded text-xs uppercase tracking-wider hover:bg-[#1EBE5D] transition-colors shadow-md"
           >
-            <MessageCircle className="w-4 h-4" /> Message Concierge on WhatsApp
+            <MessageCircle className="w-4 h-4" /> Message Us on WhatsApp
           </a>
 
           <button
@@ -202,7 +201,7 @@ export function BookingForm({
       {/* Step 1: Customer Details */}
       <div className="space-y-4">
         <h3 className="font-serif text-2xl text-primary border-b border-secondary/20 pb-2">
-          1. Patron Details
+          1. Your Details
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -243,7 +242,7 @@ export function BookingForm({
           <input
             type="email"
             {...register("email")}
-            placeholder="patron@example.com"
+            placeholder="you@example.com"
             className="w-full px-4 py-2.5 rounded bg-surface border border-secondary/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
           />
           {errors.email && (
@@ -255,13 +254,13 @@ export function BookingForm({
       {/* Step 2: Ritual Selection */}
       <div className="space-y-4">
         <h3 className="font-serif text-2xl text-primary border-b border-secondary/20 pb-2">
-          2. Desired Ritual
+          2. Choose Your Service
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-xs uppercase tracking-wider text-espresso/80 font-semibold mb-1">
-              Service Department *
+              Service Category *
             </label>
             <select
               value={selectedCatId}
@@ -345,23 +344,23 @@ export function BookingForm({
 
           <div>
             <label className="block text-xs uppercase tracking-wider text-espresso/80 font-semibold mb-1">
-              Venue Classification *
+              Location Type *
             </label>
             <select
               {...register("locationType")}
               className="w-full px-4 py-2.5 rounded bg-surface border border-secondary/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary capitalize"
             >
-              <option value="home">Private Residence / Apartment</option>
-              <option value="hotel">Hotel Suite</option>
+              <option value="home">Home / Apartment</option>
+              <option value="hotel">Hotel Room</option>
               <option value="venue">Bridal / Event Venue</option>
-              <option value="other">Other Private Facility</option>
+              <option value="other">Other Location</option>
             </select>
           </div>
         </div>
 
         <div>
           <label className="block text-xs uppercase tracking-wider text-espresso/80 font-semibold mb-1">
-            Complete Delivery Address & Landmark *
+            Full Address & Landmark *
           </label>
           <textarea
             rows={2}
@@ -376,12 +375,12 @@ export function BookingForm({
 
         <div>
           <label className="block text-xs uppercase tracking-wider text-espresso/80 font-semibold mb-1">
-            Special Requests or Skin/Hair Notes (Optional)
+            Special Requests or Notes (Optional)
           </label>
           <textarea
             rows={2}
             {...register("additionalNotes")}
-            placeholder="Any allergies, sensitivity to products, or specific bridal requests..."
+            placeholder="Any allergies, product concerns, or special requests..."
             className="w-full px-4 py-2.5 rounded bg-surface border border-secondary/30 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
@@ -393,10 +392,10 @@ export function BookingForm({
           disabled={isSubmitting}
           className="w-full py-4 bg-primary text-surface rounded text-xs uppercase tracking-[0.2em] font-semibold hover:bg-primary-dark transition-all duration-300 disabled:opacity-50 shadow-md flex items-center justify-center gap-2"
         >
-          {isSubmitting ? "Submitting Your Reservation..." : "Submit Reservation Request"}
+          {isSubmitting ? "Sending your request..." : "Submit Booking Request"}
         </button>
         <p className="text-[11px] text-center text-espresso/60 mt-3 font-light">
-          No advance payment required for enquiry. Our concierge will verify availability and confirm.
+          No payment needed to enquire. We will check availability and confirm with you.
         </p>
       </div>
     </form>

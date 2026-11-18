@@ -36,13 +36,13 @@ export default async function HomePage() {
     ]);
 
   const hero = heroContent?.content || {
-    eyebrow: "YOUR PERSONAL BEAUTY RITUAL",
+    eyebrow: "BEAUTY AT HOME",
     title: "Beauty, in the comfort of home.",
     description:
-      "Experience personalised beauty and grooming services, thoughtfully delivered to your doorstep. Your beauty ritual, your space, your time.",
+      "Personalised beauty and grooming services, brought to your doorstep. Your beauty time, your space, your way.",
     primaryCtaText: "Book Your Appointment",
     primaryCtaLink: "/book",
-    secondaryCtaText: "Explore Our Services",
+    secondaryCtaText: "View Our Services",
     secondaryCtaLink: "/services",
   };
 
@@ -91,19 +91,19 @@ export default async function HomePage() {
                 </Link>
               </div>
 
-              {/* Discrete Trust Badges */}
+              {/* Trust Badges */}
               <div className="grid grid-cols-3 gap-4 pt-8 border-t border-secondary/20 max-w-lg mt-2">
                 <div className="flex flex-col">
                   <span className="font-serif text-xl sm:text-2xl text-secondary-fixed">100%</span>
-                  <span className="text-xs text-surface/75 mt-0.5">Sanitised Private Kits</span>
+                  <span className="text-xs text-surface/75 mt-0.5">Clean Private Kits</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="font-serif text-xl sm:text-2xl text-secondary-fixed">5.0 ★</span>
-                  <span className="text-xs text-surface/75 mt-0.5">Estate Patron Rating</span>
+                  <span className="text-xs text-surface/75 mt-0.5">Client Rating</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-serif text-xl sm:text-2xl text-secondary-fixed">Haute</span>
-                  <span className="text-xs text-surface/75 mt-0.5">Certified Artisans</span>
+                  <span className="font-serif text-xl sm:text-2xl text-secondary-fixed">Expert</span>
+                  <span className="text-xs text-surface/75 mt-0.5">Trained Stylists</span>
                 </div>
               </div>
             </div>
@@ -124,13 +124,13 @@ export default async function HomePage() {
                     <Award className="w-5 h-5 text-secondary" />
                     <div>
                       <p className="text-xs uppercase tracking-wider font-semibold">
-                        Master Somatic Stylist
+                        Expert Stylist
                       </p>
-                      <p className="text-[11px] text-espresso/70">Private Estate Residency</p>
+                      <p className="text-[11px] text-espresso/70">At-home beauty service</p>
                     </div>
                   </div>
                   <span className="text-[10px] text-secondary uppercase font-semibold">
-                    Concierge
+                    Booked
                   </span>
                 </div>
               </div>
@@ -139,7 +139,7 @@ export default async function HomePage() {
 
           {/* Scroll Indicator */}
           <div className="flex items-center justify-center pt-16 gap-2 text-secondary-fixed/70">
-            <span className="text-xs uppercase tracking-[0.2em]">Scroll to Discover</span>
+            <span className="text-xs uppercase tracking-[0.2em]">Scroll down</span>
             <ArrowDown className="w-4 h-4 animate-bounce" />
           </div>
         </div>
@@ -152,7 +152,7 @@ export default async function HomePage() {
             <div className="flex items-center justify-center gap-3">
               <span className="w-6 h-[1px] bg-secondary" />
               <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-                A MORE PERSONAL KIND OF LUXURY
+                A MORE PERSONAL KIND OF CARE
               </span>
               <span className="w-6 h-[1px] bg-secondary" />
             </div>
@@ -171,19 +171,19 @@ export default async function HomePage() {
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-secondary" />
                 <span className="text-xs tracking-wider uppercase font-semibold text-secondary">
-                  Pure Botanicals
+                  Quality Products
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-secondary" />
                 <span className="text-xs tracking-wider uppercase font-semibold text-secondary">
-                  Vetted Specialists
+                  Trusted Stylists
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Lock className="w-5 h-5 text-secondary" />
                 <span className="text-xs tracking-wider uppercase font-semibold text-secondary">
-                  Strict Privacy
+                  Full Privacy
                 </span>
               </div>
             </div>
@@ -197,15 +197,14 @@ export default async function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div className="flex flex-col gap-2">
               <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-                FIND YOUR RITUAL
+                FIND YOUR SERVICE
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight">
                 Discover our services.
               </h2>
             </div>
             <p className="text-sm text-espresso/70 max-w-md">
-              Customized bespoke offerings curated specifically to restore radiance without leaving
-              your residence.
+              Choose from simple beauty refreshes to full treatments — all done at your home.
             </p>
           </div>
 
@@ -233,7 +232,7 @@ export default async function HomePage() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <span className="absolute top-3 left-3 px-2.5 py-1 bg-surface/90 backdrop-blur-sm text-primary text-[10px] uppercase tracking-wider rounded font-semibold">
-                      Ritual 0{index + 1}
+                      Service 0{index + 1}
                     </span>
                   </div>
                   <h3 className="font-serif text-2xl text-primary mb-2">{cat.name}</h3>
@@ -243,7 +242,7 @@ export default async function HomePage() {
                 </div>
                 <div className="flex items-center justify-between pt-4 border-t border-secondary/20">
                   <span className="text-xs uppercase text-secondary font-semibold">
-                    Curated Menu
+                    View menu
                   </span>
                   <Link
                     href={`/services#${cat.slug}`}
@@ -263,14 +262,13 @@ export default async function HomePage() {
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-              THE SIGNATURE MENU
+              POPULAR SERVICES
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight mt-2">
-              Featured In-Residence Therapies
+              Featured At-Home Services
             </h2>
             <p className="text-sm text-espresso/70 mt-3 font-light">
-              Each appointment includes complete suite preparation, sterile instrument presentation,
-              and aromatic botanical infusion.
+              Every visit includes clean tools, careful setup, and products chosen for your needs.
             </p>
           </div>
 
@@ -283,7 +281,7 @@ export default async function HomePage() {
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-[11px] uppercase text-secondary tracking-widest font-semibold">
-                      {service.categoryId?.name || "Signature Care"}
+                      {service.categoryId?.name || "Beauty Care"}
                     </span>
                     {service.durationMinutes && (
                       <span className="text-[11px] text-espresso/70 bg-surface-container-high px-2 py-0.5 rounded flex items-center gap-1">
@@ -301,7 +299,7 @@ export default async function HomePage() {
                       ? formatCurrency(service.pricing.amount, service.pricing.currency)
                       : service.pricing.mode === "starting_at" && service.pricing.amount
                       ? `Starting at ${formatCurrency(service.pricing.amount, service.pricing.currency)}`
-                      : "Quote upon consultation"}
+                      : "Price on request"}
                   </div>
                 </div>
 
@@ -341,11 +339,11 @@ export default async function HomePage() {
               </div>
               <div className="absolute -bottom-6 -right-6 hidden sm:block p-6 bg-primary-dark rounded ring-1 ring-secondary/40 shadow-xl max-w-xs text-surface">
                 <p className="font-serif text-xl text-secondary-fixed mb-1 font-light">
-                  The Atelier Oath
+                  Our Promise
                 </p>
                 <p className="text-xs text-surface/80 font-light leading-relaxed">
-                  Every specialist arrives with autonomous power suites, fresh protective sheets, and
-                  hospital-grade instrument sterilisers.
+                  Every stylist arrives with fresh sheets, clean tools, and everything needed for
+                  your service.
                 </p>
               </div>
             </div>
@@ -354,10 +352,10 @@ export default async function HomePage() {
             <div className="lg:col-span-6 flex flex-col gap-8">
               <div>
                 <span className="text-xs uppercase tracking-[0.25em] text-secondary-fixed font-semibold">
-                  THE PRIVILEGE CHARTER
+                  WHY CHOOSE US
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl text-surface tracking-tight mt-1">
-                  Why Patrons Entrust Us
+                  Why Clients Trust Us
                 </h2>
               </div>
 
@@ -369,11 +367,11 @@ export default async function HomePage() {
                   </span>
                   <div>
                     <h3 className="font-serif text-xl text-surface mb-1">
-                      At Your Doorstep, Seamlessly
+                      At Your Doorstep
                     </h3>
                     <p className="text-sm text-surface/80 font-light leading-relaxed">
-                      Zero commute, zero waiting rooms. We arrive 15 minutes prior to arrange our
-                      self-contained mobile salon suite without disrupting your household.
+                      No travel, no waiting rooms. We arrive a little early, set up quietly, and take
+                      care of everything in your home.
                     </p>
                   </div>
                 </div>
@@ -384,10 +382,10 @@ export default async function HomePage() {
                     02
                   </span>
                   <div>
-                    <h3 className="font-serif text-xl text-surface mb-1">Personalised Haute Touch</h3>
+                    <h3 className="font-serif text-xl text-surface mb-1">Personal Care</h3>
                     <p className="text-sm text-surface/80 font-light leading-relaxed">
-                      Every session begins with a private digital skin or hair diagnosis, tailoring
-                      specialised organic compounds to your exact tone and texture.
+                      Every session starts with understanding your skin or hair needs, so we can
+                      choose the right products for you.
                     </p>
                   </div>
                 </div>
@@ -398,11 +396,10 @@ export default async function HomePage() {
                     03
                   </span>
                   <div>
-                    <h3 className="font-serif text-xl text-surface mb-1">Your Time, Respected</h3>
+                    <h3 className="font-serif text-xl text-surface mb-1">On Time, Every Time</h3>
                     <p className="text-sm text-surface/80 font-light leading-relaxed">
-                      Punctuality guaranteed to the exact minute. Need dual therapists for parallel
-                      treatments before an evening gala? Our concierge arranges synchronized
-                      execution.
+                      We respect your schedule. Need more than one stylist for a big day? Just tell
+                      us — we can arrange it.
                     </p>
                   </div>
                 </div>
@@ -418,10 +415,10 @@ export default async function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
               <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-                THE CURATED ARCHIVE
+                OUR LOOKBOOK
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight mt-1">
-                Artisanal Gallery
+                Gallery
               </h2>
             </div>
             <Link
@@ -461,10 +458,10 @@ export default async function HomePage() {
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-              PATRON EXPERIENCES
+              CLIENT STORIES
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight mt-1">
-              Words From Our Discerning Clients
+              What Our Clients Say
             </h2>
           </div>
 
@@ -489,7 +486,7 @@ export default async function HomePage() {
                 <div className="pt-4 border-t border-secondary/20">
                   <p className="font-serif text-lg text-primary">{test.customerName}</p>
                   <p className="text-xs text-secondary font-medium mt-0.5">
-                    {test.roleOrLocation || "Verified Patron"}
+                    {test.roleOrLocation || "Happy Client"}
                   </p>
                 </div>
               </div>
@@ -502,21 +499,20 @@ export default async function HomePage() {
       <section className="w-full bg-primary-dark text-surface py-16 border-t border-secondary/30">
         <div className="max-w-[1320px] mx-auto px-6 md:px-8 text-center flex flex-col items-center gap-6">
           <span className="text-xs uppercase tracking-[0.25em] text-secondary-fixed font-semibold">
-            BESPOKE RESERVATIONS
+            BOOK WITH US
           </span>
           <h2 className="font-serif text-3xl sm:text-5xl text-surface max-w-2xl tracking-tight">
-            Reserve your private in-home appointment today.
+            Book your at-home appointment today.
           </h2>
           <p className="text-sm sm:text-base text-surface/80 max-w-xl font-light">
-            Our private concierge will promptly review your request, confirm availability, and ensure
-            every tailored requirement is prepared.
+            Tell us what you need. We will check availability and get back to you quickly.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               href="/book"
               className="px-8 py-3.5 bg-secondary text-espresso font-semibold rounded text-xs uppercase tracking-[0.16em] hover:bg-secondary-fixed transition-colors shadow-lg"
             >
-              Begin Booking Enquiry
+              Book Now
             </Link>
             <a
               href="https://wa.me/919876543210"
@@ -524,7 +520,7 @@ export default async function HomePage() {
               rel="noreferrer"
               className="px-8 py-3.5 bg-transparent text-surface border border-secondary/50 rounded text-xs uppercase tracking-[0.16em] font-semibold hover:bg-secondary/10 transition-colors"
             >
-              Direct WhatsApp Concierge
+              Chat on WhatsApp
             </a>
           </div>
         </div>

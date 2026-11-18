@@ -26,14 +26,13 @@ export default async function ServicesPage() {
         {/* Header */}
         <div className="max-w-3xl mb-16">
           <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-            HAUTE SERVICES CATALOGUE
+            OUR SERVICES
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl text-primary tracking-tight mt-2">
-            Services & Rituals
+            Services
           </h1>
           <p className="text-base text-espresso/70 mt-4 font-light leading-relaxed">
-            Every ritual is conducted in the sanctuary of your residence or private estate by
-            rigorously vetted senior aestheticians using sanitised, single-patron implements.
+            Every service is done at your home by trained stylists using clean tools, just for you.
           </p>
 
           {/* Quick jump navigation */}

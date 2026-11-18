@@ -23,16 +23,16 @@ export function Footer() {
                   The Luxe Touch
                 </span>
                 <span className="text-[10px] text-secondary-fixed uppercase tracking-[0.25em] font-semibold mt-1">
-                  Private Haute Atelier
+                  Beauty at Home
                 </span>
               </div>
             </div>
             <p className="text-sm text-surface/80 font-light leading-relaxed max-w-sm mt-2">
-              Transforming private living chambers, suites, and estates into serene sanctuaries of bespoke beauty, skincare, and bridal rituals.
+              Salon-quality beauty, skincare, and bridal services — brought to the comfort of your home.
             </p>
             <div className="flex items-center gap-2 text-xs text-secondary-fixed mt-2">
               <Sparkles className="w-4 h-4 text-secondary" />
-              <span>Sanitised Instruments • Vetted Specialists • Absolute Discretion</span>
+              <span>Clean Tools • Trusted Stylists • Full Privacy</span>
             </div>
           </div>
 
@@ -45,13 +45,13 @@ export function Footer() {
               Home
             </Link>
             <Link href="/services" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
-              Services & Rituals
+              Services
             </Link>
             <Link href="/gallery" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
-              Artisanal Gallery
+              Gallery
             </Link>
             <Link href="/about" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
-              About The Atelier
+              About Us
             </Link>
             <Link href="/our-promise" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
               Our Promise
@@ -64,7 +64,7 @@ export function Footer() {
           {/* Column 3: Concierge Details */}
           <div className="lg:col-span-4 flex flex-col gap-3">
             <span className="text-xs uppercase tracking-[0.2em] text-secondary-fixed font-semibold mb-2">
-              Concierge Contact
+              Contact
             </span>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <Phone className="w-4 h-4 text-secondary" />
@@ -78,7 +78,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="hover:text-secondary-fixed transition-colors"
               >
-                WhatsApp Click-to-Chat
+                Chat on WhatsApp
               </a>
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
@@ -87,7 +87,7 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <MapPin className="w-4 h-4 text-secondary" />
-              <span>Mumbai & Greater Suburbs (Doorstep Delivery)</span>
+              <span>Mumbai & nearby areas (at your home)</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <Clock className="w-4 h-4 text-secondary" />

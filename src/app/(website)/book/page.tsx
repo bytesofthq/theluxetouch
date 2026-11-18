@@ -5,9 +5,9 @@ import { BookingForm } from "@/components/website/BookingForm";
 import { Sparkles, Shield, Clock } from "lucide-react";
 
 export const metadata = {
-  title: "Book In-Home Appointment | The Luxe Touch",
+  title: "Book Appointment | The Luxe Touch",
   description:
-    "Schedule an exclusive personal beauty, bridal, or hair ritual delivered directly to your doorstep.",
+    "Book a beauty, bridal, or hair service at your home.",
 };
 
 export default async function BookPage({
@@ -43,14 +43,14 @@ export default async function BookPage({
         {/* Header */}
         <div className="text-center max-w-xl mx-auto mb-12">
           <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-            PRIVATE CONCIERGE SCHEDULING
+            BOOK YOUR VISIT
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl text-primary tracking-tight mt-2">
-            Reserve Your Ritual
+            Book Your Appointment
           </h1>
           <p className="text-sm text-espresso/70 mt-3 font-light leading-relaxed">
-            Submit your requested service, preferred date, and location. Our concierge will review
-            patron availability and confirm your specialist.
+            Choose your service, preferred date, and location. We will check availability and
+            confirm your stylist.
           </p>
         </div>
 
@@ -58,15 +58,15 @@ export default async function BookPage({
         <div className="grid grid-cols-3 gap-4 mb-8 text-center bg-surface-container p-4 rounded text-xs text-espresso/80">
           <div className="flex flex-col items-center gap-1">
             <Sparkles className="w-4 h-4 text-secondary" />
-            <span className="font-semibold">Sanitised In-Home Set</span>
+            <span className="font-semibold">Clean At-Home Kits</span>
           </div>
           <div className="flex flex-col items-center gap-1">
             <Shield className="w-4 h-4 text-secondary" />
-            <span className="font-semibold">Vetted Senior Artisans</span>
+            <span className="font-semibold">Trusted Stylists</span>
           </div>
           <div className="flex flex-col items-center gap-1">
             <Clock className="w-4 h-4 text-secondary" />
-            <span className="font-semibold">Punctual & Discreet</span>
+            <span className="font-semibold">On Time & Private</span>
           </div>
         </div>
 
