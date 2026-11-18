@@ -16,6 +16,7 @@ import {
   Lock,
 } from "lucide-react";
 import { getServicePriceDisplay } from "@/lib/utils";
+import { TestimonialsCarousel } from "@/components/website/TestimonialsCarousel";
 
 export const revalidate = 60; // ISR cache for 60 seconds
 
@@ -31,7 +32,7 @@ export default async function HomePage() {
         .populate("categoryId")
         .lean(),
       GalleryImage.find({ isPublished: true }).sort({ displayOrder: 1 }).limit(6).lean(),
-      Testimonial.find({ isPublished: true }).sort({ displayOrder: 1 }).limit(3).lean(),
+      Testimonial.find({ isPublished: true }).sort({ displayOrder: 1 }).lean(),
     ]);
 
   const hero = heroContent?.content || {
@@ -450,44 +451,31 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 07: TESTIMONIALS */}
-      <section className="w-full bg-surface py-20">
+      <section className="w-full bg-surface py-20 md:py-28">
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-              CLIENT STORIES
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight mt-1">
-              What Our Clients Say
-            </h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div className="max-w-xl">
+              <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
+                CLIENT STORIES
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary tracking-tight mt-2 leading-[1.12]">
+                What our clients say
+              </h2>
+            </div>
+            <p className="text-sm text-espresso/65 font-light max-w-sm">
+              Real words from clients we visit at home across Lucknow.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((test: any) => (
-              <div
-                key={test._id.toString()}
-                className="bg-surface-container-low p-8 rounded ring-1 ring-secondary/20 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center gap-1 text-secondary mb-4">
-                    {Array.from({ length: test.rating || 5 }).map((_, i) => (
-                      <span key={i} className="text-lg">
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-sm text-espresso/80 font-light leading-relaxed italic mb-6">
-                    &ldquo;{test.review}&rdquo;
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-secondary/20">
-                  <p className="font-serif text-lg text-primary">{test.customerName}</p>
-                  <p className="text-xs text-secondary font-medium mt-0.5">
-                    {test.roleOrLocation || "Happy Client"}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TestimonialsCarousel
+            items={testimonials.map((test: any) => ({
+              _id: test._id.toString(),
+              customerName: test.customerName,
+              roleOrLocation: test.roleOrLocation,
+              review: test.review,
+              rating: test.rating,
+            }))}
+          />
         </div>
       </section>
 

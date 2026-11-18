@@ -72,11 +72,12 @@ async function seed() {
     console.log(`✓ Service: ${s.name}`);
   }
 
-  // Testimonials (keep simple, client-friendly)
+  // Testimonials
+  await Testimonial.deleteMany({});
   const testimonialsData = [
     {
       customerName: "Radhika S.",
-      roleOrLocation: "Bandra West, Mumbai",
+      roleOrLocation: "Gomti Nagar, Lucknow",
       review:
         "So convenient to get beauty services at home. Clean setup, kind staff, and my skin felt fresh after the facial.",
       rating: 5,
@@ -85,7 +86,7 @@ async function seed() {
     },
     {
       customerName: "Ayesha M.",
-      roleOrLocation: "Juhu",
+      roleOrLocation: "Hazratganj",
       review:
         "On time, professional, and no mess left behind. The hair spa was relaxing and exactly what I needed.",
       rating: 5,
@@ -94,22 +95,43 @@ async function seed() {
     },
     {
       customerName: "Meera K.",
-      roleOrLocation: "South Mumbai",
+      roleOrLocation: "Indira Nagar",
       review:
         "Booked waxing at home and it was smooth and comfortable. Will definitely book again.",
       rating: 5,
       isPublished: true,
       displayOrder: 3,
     },
+    {
+      customerName: "Sana R.",
+      roleOrLocation: "Aliganj",
+      review:
+        "Booked bridal makeup trial at home — calm, careful, and the look lasted all evening. Felt spoiled in my own room.",
+      rating: 5,
+      isPublished: true,
+      displayOrder: 4,
+    },
+    {
+      customerName: "Priya T.",
+      roleOrLocation: "Aminabad",
+      review:
+        "They arrived early, set up quietly, and cleaned everything after. The cleanup facial was gentle and effective.",
+      rating: 5,
+      isPublished: true,
+      displayOrder: 5,
+    },
+    {
+      customerName: "Ananya V.",
+      roleOrLocation: "Gomti Nagar",
+      review:
+        "Needed two stylists for a family function — they arranged it without fuss. Hair and makeup both looked polished.",
+      rating: 5,
+      isPublished: true,
+      displayOrder: 6,
+    },
   ];
 
-  for (const t of testimonialsData) {
-    await Testimonial.findOneAndUpdate(
-      { customerName: t.customerName },
-      { $set: t },
-      { upsert: true, new: true }
-    );
-  }
+  await Testimonial.insertMany(testimonialsData);
   console.log("✓ Testimonials seeded.");
 
   // Gallery — local lookbook photos
