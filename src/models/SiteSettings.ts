@@ -33,7 +33,7 @@ export interface ISiteSettings extends Document {
 
 const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
   {
-    brandName: { type: String, default: "The Luxe Touch" },
+    brandName: { type: String, default: "The Luxè Touch" },
     tagline: {
       type: String,
       default: "Where Beauty Meets a Touch of Luxury.",
@@ -58,8 +58,8 @@ const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
       youtube: { type: String, default: "" },
     },
     businessHours: {
-      weekdays: { type: String, default: "9:00 AM - 8:00 PM" },
-      weekends: { type: String, default: "8:00 AM - 9:00 PM" },
+      weekdays: { type: String, default: "9:00 AM - 6:00 PM" },
+      weekends: { type: String, default: "9:00 AM - 6:00 PM" },
     },
     bookingPreferences: {
       minimumNoticeHours: { type: Number, default: 24 },
@@ -68,7 +68,7 @@ const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
     seo: {
       defaultTitle: {
         type: String,
-        default: "The Luxe Touch | Where Beauty Meets a Touch of Luxury",
+        default: "The Luxè Touch | Where Beauty Meets a Touch of Luxury",
       },
       defaultDescription: {
         type: String,

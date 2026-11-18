@@ -3,23 +3,22 @@ import Image from "next/image";
 import { ShieldCheck, Sparkles, HeartHandshake, Heart } from "lucide-react";
 
 export const metadata = {
-  title: "About Us | The Luxe Touch",
+  title: "About Us | The Luxè Touch",
   description:
-    "Meet our salon stylists. Salon-quality beauty experiences brought right to your doorstep.",
+    "Professional beauty services, delivered to your doorstep. Where Beauty Meets a Touch of Luxury.",
 };
 
 export default function AboutPage() {
   return (
     <div className="w-full bg-surface">
-      {/* Meet Our Salon Stylists — column layout */}
+      {/* Intro + stylists */}
       <section className="w-full bg-surface-container-low py-16 md:py-20">
         <div className="max-w-[1100px] mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            {/* Image column — full banner */}
             <div className="relative rounded overflow-hidden ring-1 ring-secondary/30 shadow-lg bg-[#F3E9DF]">
               <Image
                 src="/assets/branding/salon-stylists.jpg"
-                alt="The Luxe Touch salon stylists"
+                alt="The Luxè Touch salon stylists"
                 width={1200}
                 height={800}
                 priority
@@ -28,18 +27,25 @@ export default function AboutPage() {
               />
             </div>
 
-            {/* Text column */}
             <div className="flex flex-col gap-5 lg:pl-2">
               <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
                 ABOUT US
               </span>
               <h1 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight">
-                Meet the team behind{" "}
-                <span className="italic font-light text-secondary">The Luxe Touch</span>
+                Professional Beauty Services,{" "}
+                <span className="italic font-light text-secondary">Delivered to Your Doorstep!</span>
               </h1>
               <p className="text-sm sm:text-base text-espresso/80 font-light leading-relaxed">
-                Our stylists bring salon-quality care to your home — with skill, care, and a
-                personal touch every visit.
+                Experience the perfect blend of beauty, comfort, and convenience with The Luxè Touch.
+                Enjoy personalised, salon-style beauty services at home, delivered by a trained and
+                experienced beauty professional. Because you deserve to feel beautiful, confident,
+                and cared for – wherever you are.
+              </p>
+              <p className="text-sm font-medium text-primary">
+                Beauty meets comfort, right at your doorstep!
+              </p>
+              <p className="text-xs uppercase tracking-[0.18em] text-secondary font-semibold">
+                Turning Self-Care into Something Extraordinary
               </p>
 
               <div>
@@ -68,8 +74,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Hygiene section */}
+      {/* Long description + founder */}
       <section className="w-full bg-surface py-16 md:py-20">
+        <div className="max-w-[800px] mx-auto px-6 md:px-8">
+          <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
+            OUR STORY
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight mt-2">
+            Welcome to The Luxè Touch – Beauty, Comfort &amp; Care at Your Doorstep!
+          </h2>
+
+          <div className="mt-6 space-y-4 text-sm sm:text-base text-espresso/80 font-light leading-relaxed">
+            <p>
+              At The Luxè Touch, we believe self-care should feel special. We offer a relaxing,
+              personalised beauty experience at home — so you can look and feel your best without
+              leaving your doorstep.
+            </p>
+            <p>
+              Led by a trained professional, we are dedicated to helping clients look and feel their
+              best — from everyday grooming to special occasions — with careful attention to every
+              detail.
+            </p>
+            <p>
+              Our goal is to make professional beauty care accessible without compromising on
+              quality, making every experience effortless and memorable.
+            </p>
+            <p className="font-medium text-primary">
+              Your beauty, your comfort, our touch – experience the luxury of salon-style care at
+              home with The Luxè Touch.
+            </p>
+          </div>
+
+          <div className="mt-10 pt-8 border-t border-secondary/25">
+            <p className="text-xs uppercase tracking-[0.2em] text-secondary font-semibold">
+              Founder
+            </p>
+            <p className="font-serif text-2xl text-primary mt-2">Anup Kumar Gupta</p>
+            <p className="text-sm text-espresso/70 font-light mt-1">
+              The Luxè Touch — Premium Beauty &amp; Salon Home Services
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Hygiene section */}
+      <section className="w-full bg-surface pb-16 md:pb-20">
         <div className="max-w-[1100px] mx-auto px-6 md:px-8">
           <div className="bg-primary text-surface p-8 sm:p-12 rounded ring-1 ring-secondary/40 shadow-xl">
             <div className="max-w-2xl">

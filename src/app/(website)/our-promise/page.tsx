@@ -8,85 +8,85 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Our Promise to You | The Luxe Touch",
+  title: "Our Promise to You | The Luxè Touch",
   description:
-    "Beauty with Care, Comfort & Trust. Our commitments to hygiene, customer care, booking, payments, privacy, and quality.",
+    "Beauty with Care, Comfort & Trust. Policies for hygiene, customer care, booking, refunds, privacy, and quality.",
 };
 
 const promises = [
   {
     icon: ShieldCheck,
-    title: "Hygiene & Safety Promise",
-    tagline: "Your safety is our priority.",
+    title: "Hygiene & Safety Policy",
+    summary: "Sanitized tools, clean towels and disposable items",
     points: [
-      "Your safety and well-being are always our priority.",
-      "All beauty tools are thoroughly cleaned and sanitised before every appointment.",
-      "Disposable items are used only once wherever required.",
-      "Fresh towels and clean materials are maintained for every customer.",
-      "Products are checked for quality, suitability and expiry dates before use.",
-      "Proper hygiene and safety practices are followed throughout every service.",
+      "All beauty tools will be properly cleaned and sanitized before use.",
+      "Disposable items will be used only once wherever required.",
+      "Clean towels and hygienic materials will be maintained for every appointment.",
+      "Product quality and expiry dates will be checked before use.",
+      "Proper hygiene and safety standards will be followed during every service.",
     ],
   },
   {
     icon: HeartHandshake,
-    title: "Customer Care Promise",
-    tagline: "You matter to us.",
+    title: "Customer Care Policy",
+    summary: "Respectful behaviour and personalized services",
     points: [
-      "Every customer deserves to feel valued, comfortable and confident.",
-      "We treat every customer with respect, kindness and professionalism.",
-      "Services are tailored to individual needs, preferences and requirements.",
-      "Service details, procedures and prices are communicated clearly before starting.",
-      "We listen to your preferences and aim to deliver an experience that meets your expectations.",
-      "Your satisfaction is always at the heart of what we do.",
+      "Every customer will be treated with respect, care and professionalism.",
+      "Services will be provided according to individual customer needs and preferences.",
+      "Service procedures and prices will be communicated before starting.",
+      "Customer satisfaction will always remain our priority.",
     ],
   },
   {
     icon: CalendarClock,
     title: "Booking & Cancellation Policy",
-    tagline: "Convenient and flexible.",
+    summary: "Advance booking, transport charge and cancellation rules",
     points: [
-      "We value your time and aim to make every appointment convenient.",
-      "All appointments are subject to availability.",
-      "Customers are requested to provide at least 24 hours' notice for cancellations or rescheduling.",
-      "In case of unexpected delays or changes, customers will be informed as early as possible.",
-      "Appointments are confirmed based on availability and any applicable advance payment requirements.",
+      "An advance transport charge of ₹100 is mandatory for all bookings. Service is confirmed only after receiving this payment.",
+      "Transport charge: ₹100 within 15 km · ₹150 over 15 km.",
+      "Customers can cancel before a beautician is assigned, but the ₹100 advance transport charge is non-refundable.",
+      "Once a beautician is assigned, the advance transport charge is non-refundable if the customer cancels.",
+      "Once the beautician has started traveling, no refund will be provided if the customer cancels.",
+      "If The Luxè Touch cancels a booking due to unavoidable circumstances, the customer will receive a full refund (including the advance transport charge) or may choose to reschedule.",
+      "After a beautician has been assigned, rescheduling requests are subject to availability and approval by The Luxè Touch.",
+      "Appointments are confirmed by phone call and WhatsApp / SMS.",
     ],
   },
   {
     icon: Wallet,
-    title: "Payment & Refund Policy",
-    tagline: "Transparent and fair.",
+    title: "Refund & Payment Policy",
+    summary: "Cash & online payment · fair resolution",
     points: [
-      "We believe in transparent pricing and clear communication.",
-      "All service prices are shared before booking confirmation.",
-      "Payments and any applicable advance payment requirements are communicated clearly.",
-      "Generally, refunds are not available once a service has been completed.",
-      "If an issue arises due to our mistake, we will make reasonable efforts to understand the concern and provide a suitable resolution.",
-      "Any applicable refund or rescheduling conditions will be communicated before booking.",
+      "We accept cash and online payment (UPI, debit cards, credit cards, and other available methods).",
+      "Advance payments are required. Preferred booking method is online payment.",
+      "Customers paying by cash must still pay the ₹100 advance transport charge online to confirm. The remaining service amount can be paid in cash after completion.",
+      "For online payment, the booking is confirmed only after receiving the advance payment.",
+      "All service prices will be communicated clearly before booking confirmation.",
+      "Generally, refunds will not be available once a service has been completed.",
+      "If a service-related issue occurs due to our mistake, we will make reasonable efforts to provide a suitable resolution.",
+      "For booking, cancellation, rescheduling, or refund help, contact us by phone or WhatsApp.",
     ],
   },
   {
     icon: Lock,
-    title: "Privacy & Confidentiality Promise",
-    tagline: "Your privacy, our priority.",
+    title: "Privacy Policy",
+    summary: "Protection of customer information and photographs",
     points: [
-      "Your privacy deserves the same care and attention as your beauty.",
-      "Customer contact details and personal information are treated confidentially.",
-      "Photographs and videos of customers are never shared on social media or promotional platforms without prior permission.",
-      "Personal information is not shared with third parties except where necessary for service operations or when legally required.",
+      "Customer personal information will be kept confidential.",
+      "Customer photographs and videos will never be shared on social media without prior permission.",
+      "Contact details and personal information will not be shared with third parties except where necessary for service operations or required by law.",
     ],
   },
   {
     icon: Gem,
     title: "Our Quality Promise",
-    tagline: "Nothing but the best.",
+    summary: "Quality products and professional service",
     points: [
-      "We are dedicated to maintaining high standards in every service we provide.",
-      "Carefully selected, quality beauty and skincare products.",
-      "Skilled and responsible beauty professionals.",
-      "Clean, hygienic and professional service practices.",
-      "Personalised attention and care for every customer.",
-      "Salon-style beauty experiences delivered in the comfort of your home.",
+      "Use of quality beauty and skincare products.",
+      "Professional and responsible beauty professionals.",
+      "Clean, hygienic and professional service delivery.",
+      "Personalized attention to every customer.",
+      "A premium beauty experience in the comfort of your home.",
     ],
   },
 ];
@@ -94,7 +94,6 @@ const promises = [
 export default function OurPromisePage() {
   return (
     <div className="w-full bg-surface relative overflow-hidden">
-      {/* Soft corner flourishes (design-system friendly) */}
       <div
         aria-hidden
         className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full bg-secondary/15 blur-3xl"
@@ -103,16 +102,12 @@ export default function OurPromisePage() {
         aria-hidden
         className="pointer-events-none absolute -bottom-32 -right-24 w-80 h-80 rounded-full bg-secondary/20 blur-3xl"
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-1/3 -right-16 w-56 h-56 rounded-full bg-primary/5 blur-3xl"
-      />
 
       <div className="relative max-w-[1100px] mx-auto px-6 md:px-8 py-16 md:py-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 md:mb-16">
           <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
-            OUR COMMITMENT TO YOU
+            POLICIES & PROMISE
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl text-primary tracking-tight mt-3">
             Our Promise to You
@@ -121,14 +116,9 @@ export default function OurPromisePage() {
             Beauty with Care, Comfort &amp; Trust.
           </p>
           <p className="text-sm sm:text-base text-espresso/80 font-light leading-relaxed mt-6">
-            At The Luxe Touch, we believe that beauty is more than just a service — it&apos;s an
-            experience built on care, comfort and confidence. We are committed to bringing
-            professional, hygienic and personalised beauty services right to your doorstep.
-          </p>
-          <p className="text-sm sm:text-base text-espresso/80 font-light leading-relaxed mt-4">
-            Your comfort, satisfaction and trust mean everything to us. From the products we use to
-            the care we provide, every detail is thoughtfully considered to make your experience
-            special.
+            At The Luxè Touch, we are committed to providing every customer with a safe, hygienic,
+            comfortable and luxurious beauty experience at home. Your beauty, satisfaction and trust
+            are our top priorities.
           </p>
         </div>
 
@@ -149,7 +139,7 @@ export default function OurPromisePage() {
                     <h2 className="font-serif text-xl sm:text-2xl text-primary tracking-tight">
                       {item.title}
                     </h2>
-                    <p className="text-sm italic text-secondary mt-1">{item.tagline}</p>
+                    <p className="text-sm italic text-secondary mt-1">{item.summary}</p>
                   </div>
                 </div>
 
@@ -171,11 +161,14 @@ export default function OurPromisePage() {
 
         {/* Closing */}
         <div className="text-center max-w-2xl mx-auto mt-16 md:mt-20 pt-10 border-t border-secondary/25">
-          <p className="font-serif text-xl sm:text-2xl text-primary tracking-tight italic">
-            The Luxe Touch – Because You Deserve Nothing Less Than Extraordinary.
+          <p className="text-xs uppercase tracking-[0.22em] text-secondary font-semibold">
+            OUR PROMISE
           </p>
-          <p className="text-xs sm:text-sm uppercase tracking-[0.22em] text-secondary font-semibold mt-5">
-            YOUR BEAUTY. YOUR COMFORT. OUR COMMITMENT.
+          <p className="font-serif text-xl sm:text-2xl text-primary tracking-tight mt-3">
+            Your Trust. Your Beauty. Our Responsibility.
+          </p>
+          <p className="text-sm sm:text-base text-espresso/80 font-light mt-4">
+            THE LUXÈ TOUCH – Bringing Luxury Beauty Care to Your Doorstep.
           </p>
         </div>
       </div>

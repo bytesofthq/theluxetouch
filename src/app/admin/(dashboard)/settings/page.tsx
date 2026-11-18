@@ -8,7 +8,7 @@ export default async function AdminSettingsPage() {
   await connectToDatabase();
 
   const settings = (await SiteSettings.findOne({}).lean()) || {
-    brandName: "The Luxe Touch",
+    brandName: "The Luxè Touch",
     tagline: "Where Beauty Meets a Touch of Luxury.",
     contact: {
       phone: "+91 98765 43210",
@@ -17,8 +17,8 @@ export default async function AdminSettingsPage() {
     },
     serviceAreas: ["Mumbai", "Bandra", "Juhu", "South Mumbai", "Powai", "Thane"],
     businessHours: {
-      weekdays: "9:00 AM - 8:00 PM",
-      weekends: "8:00 AM - 9:00 PM",
+      weekdays: "9:00 AM - 6:00 PM",
+      weekends: "9:00 AM - 6:00 PM",
     },
   };
 

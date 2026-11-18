@@ -20,7 +20,7 @@ export function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="font-serif text-2xl text-surface tracking-tight leading-none">
-                  The Luxe Touch
+                  The Luxè Touch
                 </span>
                 <span className="text-[10px] text-secondary-fixed tracking-wide font-medium mt-1">
                   Where Beauty Meets a Touch of Luxury.
@@ -28,7 +28,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-surface/80 font-light leading-relaxed max-w-sm mt-2">
-              Salon-quality beauty, skincare, and bridal services — brought to the comfort of your home.
+              Premium beauty &amp; salon home services. Turning self-care into something
+              extraordinary.
             </p>
             <div className="flex items-center gap-2 text-xs text-secondary-fixed mt-2">
               <Sparkles className="w-4 h-4 text-secondary" />
@@ -91,14 +92,14 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-3 text-sm text-surface/80">
               <Clock className="w-4 h-4 text-secondary" />
-              <span>Mon - Sun: 9:00 AM – 8:00 PM</span>
+              <span>Sun – Sat: 9:00 AM – 6:00 PM</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-surface/60 gap-4 text-center md:text-left">
-          <p>© {new Date().getFullYear()} The Luxe Touch. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} The Luxè Touch. All rights reserved.</p>
           <p>
             Designed and developed by{" "}
             <a

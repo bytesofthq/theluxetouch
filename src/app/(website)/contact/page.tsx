@@ -19,8 +19,8 @@ export default async function ContactPage() {
     },
     serviceAreas: ["Mumbai", "Bandra", "Juhu", "South Mumbai", "Powai", "Thane"],
     businessHours: {
-      weekdays: "9:00 AM - 8:00 PM",
-      weekends: "8:00 AM - 9:00 PM",
+      weekdays: "9:00 AM - 6:00 PM (Sun – Sat)",
+      weekends: "9:00 AM - 6:00 PM (Sun – Sat)",
     },
   };
 

@@ -395,7 +395,8 @@ export function BookingForm({
           {isSubmitting ? "Sending your request..." : "Submit Booking Request"}
         </button>
         <p className="text-[11px] text-center text-espresso/60 mt-3 font-light">
-          No payment needed to enquire. We will check availability and confirm with you.
+          After you submit, we confirm by phone or WhatsApp. A ₹100 advance transport charge
+          (₹150 over 15 km) is required to confirm your booking. Cash and online payments accepted.
         </p>
       </div>
     </form>

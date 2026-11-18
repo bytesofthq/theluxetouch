@@ -30,7 +30,7 @@ export function Header() {
           </div>
           <div className="flex flex-col">
             <span className="font-serif text-2xl text-primary tracking-tight font-normal leading-none">
-              The Luxe Touch
+              The Luxè Touch
             </span>
             <span className="text-[10px] text-secondary tracking-wide font-medium mt-1">
               Where Beauty Meets a Touch of Luxury.
