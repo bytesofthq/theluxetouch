@@ -287,59 +287,54 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 05: WHY CLIENTS TRUST US */}
-      <section className="w-full bg-primary text-surface py-20 md:py-28 relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 18% 20%, #d4af37 0%, transparent 42%), radial-gradient(circle at 88% 78%, #d4af37 0%, transparent 36%)",
-          }}
-        />
-        <div className="max-w-[1320px] mx-auto px-6 md:px-8 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
-            {/* Editorial image collage */}
-            <div className="lg:col-span-6 relative">
-              <div className="relative max-w-lg mx-auto lg:mx-0 lg:max-w-none">
-                <div className="relative w-[78%] aspect-[4/5] overflow-hidden">
+      {/* SECTION 05: WHY CLIENTS TRUST US — light editorial split */}
+      <section className="w-full bg-surface py-20 md:py-28">
+        <div className="max-w-[1320px] mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-start">
+            {/* Photos first on mobile */}
+            <div className="lg:col-span-7 order-1">
+              <div className="relative max-w-xl lg:max-w-none mx-auto lg:mx-0 pb-16 sm:pb-20">
+                <div className="relative aspect-[4/5] sm:aspect-[5/6] overflow-hidden group">
                   <Image
                     src="/assets/branding/why-facial.jpg"
                     alt="Facial treatment with serum and brush"
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 80vw, 40vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="(max-width: 1024px) 90vw, 55vw"
                   />
                 </div>
-                <div className="absolute right-0 bottom-[-1.5rem] sm:bottom-8 w-[48%] aspect-[3/4] overflow-hidden ring-4 ring-primary shadow-2xl">
+                <div className="absolute right-0 bottom-0 w-[42%] sm:w-[38%] aspect-[3/4] overflow-hidden ring-[3px] ring-secondary/80 shadow-lg">
                   <Image
                     src="/assets/branding/why-makeup.jpg"
                     alt="Relaxing facial massage"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 45vw, 22vw"
+                    sizes="(max-width: 1024px) 40vw, 20vw"
                   />
                 </div>
-                <div className="absolute -left-3 top-10 hidden sm:block w-px h-28 bg-secondary/60" />
-                <p className="mt-10 sm:mt-6 lg:mt-4 lg:absolute lg:left-[82%] lg:top-0 lg:w-40 text-[11px] uppercase tracking-[0.18em] text-secondary-fixed/90 font-semibold leading-relaxed">
+              </div>
+              <div className="flex items-center gap-4 mt-2">
+                <span className="h-px w-10 bg-secondary" />
+                <p className="text-[11px] uppercase tracking-[0.22em] text-secondary font-semibold">
                   Care that comes to you
                 </p>
               </div>
             </div>
 
-            {/* Pillars */}
-            <div className="lg:col-span-6 flex flex-col">
-              <span className="text-xs uppercase tracking-[0.25em] text-secondary-fixed font-semibold">
+            {/* Copy + trust list */}
+            <div className="lg:col-span-5 order-2 flex flex-col lg:pt-4">
+              <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
                 WHY CHOOSE US
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-surface tracking-tight mt-3 leading-[1.15]">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary tracking-tight mt-3 leading-[1.12]">
                 Why clients trust us
               </h2>
-              <p className="text-sm sm:text-base text-surface/70 font-light leading-relaxed mt-4 max-w-md">
+              <p className="text-sm sm:text-base text-espresso/70 font-light leading-relaxed mt-4 max-w-md">
                 Quiet setup, personal attention, and a team that treats your home like a private
                 studio.
               </p>
 
-              <div className="mt-10 border-t border-secondary/25">
+              <div className="mt-10 border-t border-secondary/30">
                 {[
                   {
                     n: "01",
@@ -359,16 +354,16 @@ export default async function HomePage() {
                 ].map((item) => (
                   <div
                     key={item.n}
-                    className="group flex gap-5 sm:gap-6 py-6 border-b border-secondary/25"
+                    className="group flex gap-5 sm:gap-6 py-6 border-b border-secondary/30"
                   >
-                    <span className="font-serif text-2xl sm:text-3xl text-secondary-fixed font-light leading-none w-10 flex-shrink-0 pt-0.5 transition-transform duration-300 group-hover:translate-x-0.5">
+                    <span className="font-serif text-2xl sm:text-3xl text-secondary font-light leading-none w-10 flex-shrink-0 pt-0.5 transition-colors duration-300 group-hover:text-primary">
                       {item.n}
                     </span>
                     <div>
-                      <h3 className="font-serif text-xl sm:text-2xl text-surface tracking-tight">
+                      <h3 className="font-serif text-xl sm:text-2xl text-primary tracking-tight transition-colors duration-300 group-hover:text-secondary">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-surface/70 font-light leading-relaxed mt-1.5 max-w-md">
+                      <p className="text-sm text-espresso/65 font-light leading-relaxed mt-1.5 max-w-md">
                         {item.body}
                       </p>
                     </div>
@@ -378,7 +373,7 @@ export default async function HomePage() {
 
               <Link
                 href="/our-promise"
-                className="inline-flex items-center gap-2 mt-8 text-xs uppercase tracking-[0.16em] font-semibold text-secondary-fixed hover:text-surface transition-colors"
+                className="inline-flex items-center gap-2 mt-8 text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-secondary transition-colors"
               >
                 Read our promise <ArrowRight className="w-3.5 h-3.5" />
               </Link>
