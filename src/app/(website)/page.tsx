@@ -382,47 +382,70 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 06: ARTISANAL GALLERY LOOKBOOK */}
-      <section className="w-full bg-surface-container-low py-20">
+      {/* SECTION 06: LOOKBOOK GALLERY — editorial mosaic */}
+      <section className="w-full bg-surface-container-low py-20 md:py-28">
         <div className="max-w-[1320px] mx-auto px-6 md:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-14 gap-4">
+            <div className="max-w-lg">
               <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
                 OUR LOOKBOOK
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight mt-1">
-                Gallery
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-primary tracking-tight mt-2 leading-[1.12]">
+                Moments from our work
               </h2>
+              <p className="text-sm text-espresso/65 font-light leading-relaxed mt-3">
+                Soft glam, facials, and hair care — a glimpse of what we create at home.
+              </p>
             </div>
             <Link
               href="/gallery"
-              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-primary font-semibold hover:text-secondary transition-colors"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-secondary transition-colors"
             >
-              View Full Gallery <ArrowRight className="w-4 h-4" />
+              View full gallery <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((img: any) => (
-              <div
-                key={img._id.toString()}
-                className="relative aspect-[3/4] rounded overflow-hidden shadow-md group cursor-pointer"
-              >
-                <Image
-                  src={img.image.url}
-                  alt={img.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-surface">
-                  <span className="text-xs uppercase text-secondary-fixed tracking-widest font-semibold">
-                    {img.category}
-                  </span>
-                  <p className="font-serif text-xl mt-1">{img.title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          {galleryImages.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 auto-rows-[220px] sm:auto-rows-[260px] md:auto-rows-[200px] lg:auto-rows-[240px]">
+              {galleryImages.slice(0, 6).map((img: any, index: number) => {
+                const spanClass =
+                  index === 0
+                    ? "md:col-span-7 md:row-span-2"
+                    : index === 1 || index === 2
+                      ? "md:col-span-5"
+                      : "md:col-span-4";
+
+                return (
+                  <Link
+                    key={img._id.toString()}
+                    href="/gallery"
+                    className={`group relative overflow-hidden bg-surface-container ${spanClass}`}
+                  >
+                    <Image
+                      src={img.image.url}
+                      alt={img.image?.alt || img.title}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      sizes={
+                        index === 0
+                          ? "(max-width: 768px) 100vw, 58vw"
+                          : "(max-width: 768px) 100vw, 33vw"
+                      }
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/75 via-primary/10 to-transparent opacity-80 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-500">
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-secondary-fixed font-semibold">
+                        {img.category}
+                      </span>
+                      <p className="font-serif text-lg sm:text-xl text-surface mt-0.5 tracking-tight">
+                        {img.title}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
       </section>
 

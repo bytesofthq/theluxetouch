@@ -112,56 +112,90 @@ async function seed() {
   }
   console.log("✓ Testimonials seeded.");
 
-  // Gallery (keep existing image URLs if present)
+  // Gallery — local lookbook photos
+  await GalleryImage.deleteMany({});
   const galleryData = [
     {
-      title: "Bridal Makeup",
-      description: "At-home bridal makeup look.",
-      category: "bridal",
+      title: "Soft Glam Makeup",
+      description: "Soft glam lip and eye makeup for celebrations.",
+      category: "makeup" as const,
       isFeatured: true,
       isPublished: true,
       displayOrder: 1,
       image: {
-        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuAhHsA7hUiQvLghQgB7_KbRNIyxJtnvFqJnKPz059EIPl1jqB7PU3ZOUaVLAnZL28n5lc08mzf224zy_HoSJLCArQJ7YDYMCQEz8ck4uz5y4jhNNtdpdD612ER5inGP7j_qCRJPY71_yZwBwCs_Lra4wNLuQU1J6cfSarNJP-JaY2hqlGOYWoXC372lFJ8pcr9o5yzzl5YKe3t6XEvA3VgBz63nu0aBDEKhpltVNeA",
-        publicId: "gallery_bridal_1",
-        alt: "Bridal Makeup",
+        url: "/assets/gallery/gallery-bridal.jpg",
+        publicId: "gallery_soft_glam",
+        alt: "Soft glam makeup application",
       },
     },
     {
-      title: "Skincare Glow",
-      description: "Fresh glowing skin after an at-home facial.",
-      category: "skincare",
+      title: "Clay Mask Facial",
+      description: "A calming facial with a nourishing clay mask.",
+      category: "skincare" as const,
       isFeatured: true,
       isPublished: true,
       displayOrder: 2,
       image: {
-        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMxPgAmRk76kCcHn4TDzCNUYeVcpv4mjOpwv6YEsjBMFFlxupkB-iJdHnSjpVfPQgdHk_YWzkCq09hJ67U09_oXW8nGE6aEOfuScCDjZgsspHdn8aNHwllsYlpQGEdvIFABZDmDiChy8bp3hmlfa5HE2yokJBhVrFaPIjCPAkduiKV30bmp55GcK80eht7C5lFl0BC3RA2luYYmkX0t-kK4fo7byf8BLP-mfnWNRg",
-        publicId: "gallery_skincare_1",
-        alt: "Skincare",
+        url: "/assets/gallery/gallery-skincare.jpg",
+        publicId: "gallery_clay_mask",
+        alt: "Clay mask facial treatment",
       },
     },
     {
-      title: "Evening Makeup",
-      description: "Soft glam for a night out.",
-      category: "makeup",
-      isFeatured: false,
+      title: "Serum Ritual",
+      description: "Serum and brush application for glowing skin.",
+      category: "skincare" as const,
+      isFeatured: true,
       isPublished: true,
       displayOrder: 3,
       image: {
-        url: "/assets/branding/image1.png",
-        publicId: "gallery_makeup_1",
-        alt: "Evening Makeup",
+        url: "/assets/gallery/gallery-facial.jpg",
+        publicId: "gallery_serum_ritual",
+        alt: "Facial serum ritual",
+      },
+    },
+    {
+      title: "Natural Glow",
+      description: "Fresh, luminous skin after a beauty session.",
+      category: "skincare" as const,
+      isFeatured: true,
+      isPublished: true,
+      displayOrder: 4,
+      image: {
+        url: "/assets/gallery/gallery-glow.jpg",
+        publicId: "gallery_natural_glow",
+        alt: "Natural skin glow",
+      },
+    },
+    {
+      title: "Hair Care Wash",
+      description: "Gentle shampoo and scalp care at home.",
+      category: "hair" as const,
+      isFeatured: true,
+      isPublished: true,
+      displayOrder: 5,
+      image: {
+        url: "/assets/gallery/gallery-hair.jpg",
+        publicId: "gallery_hair_wash",
+        alt: "Hair wash and care",
+      },
+    },
+    {
+      title: "At-Home Makeup",
+      description: "Makeup artistry brought to your living room.",
+      category: "makeup" as const,
+      isFeatured: true,
+      isPublished: true,
+      displayOrder: 6,
+      image: {
+        url: "/assets/gallery/gallery-makeup.jpg",
+        publicId: "gallery_at_home_makeup",
+        alt: "At-home makeup session",
       },
     },
   ];
 
-  for (const g of galleryData) {
-    await GalleryImage.findOneAndUpdate(
-      { title: g.title },
-      { $set: g },
-      { upsert: true, new: true }
-    );
-  }
+  await GalleryImage.insertMany(galleryData);
   console.log("✓ Gallery images seeded.");
 
   await SiteSettings.findOneAndUpdate(
