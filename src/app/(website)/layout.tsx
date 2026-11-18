@@ -10,7 +10,7 @@ export default function WebsiteLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1 pt-20">{children}</main>
+      <main className="flex-1 pt-[7.25rem]">{children}</main>
       <Footer />
       <WhatsAppFloatingButton />
     </div>

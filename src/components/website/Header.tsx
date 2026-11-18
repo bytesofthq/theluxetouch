@@ -9,8 +9,14 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-secondary/20 shadow-[0_1px_12px_rgba(48,37,31,0.04)]">
-      <div className="h-20 max-w-[1320px] mx-auto px-6 md:px-8 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <div className="bg-primary text-center py-2 px-4">
+        <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-surface/90 font-medium">
+          A little luxury, delivered to your doorstep + now taking home appointments
+        </p>
+      </div>
+      <div className="h-20 bg-surface/90 backdrop-blur-xl border-b border-secondary/20 shadow-[0_1px_12px_rgba(48,37,31,0.04)]">
+      <div className="h-full max-w-[1320px] mx-auto px-6 md:px-8 flex items-center justify-between">
         {/* Brand Logo & Name */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 rounded-full overflow-hidden ring-1 ring-secondary/40 group-hover:ring-secondary transition-all">
@@ -26,8 +32,8 @@ export function Header() {
             <span className="font-serif text-2xl text-primary tracking-tight font-normal leading-none">
               The Luxe Touch
             </span>
-            <span className="text-[10px] text-secondary uppercase tracking-[0.25em] font-semibold mt-1">
-              Beauty at Home
+            <span className="text-[10px] text-secondary tracking-wide font-medium mt-1">
+              Where Beauty Meets a Touch of Luxury.
             </span>
           </div>
         </Link>
@@ -88,6 +94,7 @@ export function Header() {
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+      </div>
       </div>
 
       {/* Mobile Drawer */}

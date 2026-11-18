@@ -9,7 +9,7 @@ export default async function AdminSettingsPage() {
 
   const settings = (await SiteSettings.findOne({}).lean()) || {
     brandName: "The Luxe Touch",
-    tagline: "Personalised Beauty & Grooming Delivered to You",
+    tagline: "Where Beauty Meets a Touch of Luxury.",
     contact: {
       phone: "+91 98765 43210",
       whatsappNumber: "919876543210",

@@ -36,7 +36,7 @@ const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
     brandName: { type: String, default: "The Luxe Touch" },
     tagline: {
       type: String,
-      default: "Personalised Beauty & Grooming Delivered to You",
+      default: "Where Beauty Meets a Touch of Luxury.",
     },
     logoUrl: { type: String, default: "/assets/branding/logo.jpeg" },
     contact: {
@@ -68,12 +68,12 @@ const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
     seo: {
       defaultTitle: {
         type: String,
-        default: "The Luxe Touch | Luxury In-Home Beauty & Grooming Services",
+        default: "The Luxe Touch | Where Beauty Meets a Touch of Luxury",
       },
       defaultDescription: {
         type: String,
         default:
-          "Experience personalised haute beauty and wellness rituals delivered to your doorstep. Private estate hair, skin, bridal and somatic care.",
+          "Where Beauty Meets a Touch of Luxury. Salon-inspired beauty services, brought to your doorstep with care.",
       },
     },
   },

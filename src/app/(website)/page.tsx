@@ -9,11 +9,10 @@ import { PageContent } from "@/models/PageContent";
 import {
   Sparkles,
   ShieldCheck,
-  Award,
   ArrowRight,
   ArrowDown,
+  ArrowUpRight,
   Clock,
-  CheckCircle2,
   Lock,
 } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
@@ -36,113 +35,79 @@ export default async function HomePage() {
     ]);
 
   const hero = heroContent?.content || {
-    eyebrow: "BEAUTY AT HOME",
+    eyebrow: "YOUR PERSONAL BEAUTY RITUAL",
     title: "Beauty, in the comfort of home.",
     description:
-      "Personalised beauty and grooming services, brought to your doorstep. Your beauty time, your space, your way.",
+      "A considered touch. A little time for yourself. Salon-inspired beauty services, brought to your doorstep with care.",
     primaryCtaText: "Book Your Appointment",
     primaryCtaLink: "/book",
-    secondaryCtaText: "View Our Services",
+    secondaryCtaText: "Explore our services",
     secondaryCtaLink: "/services",
   };
 
   return (
     <div className="flex flex-col w-full">
-      {/* SECTION 01: HERO (Deep Emerald) */}
-      <section className="relative w-full bg-primary text-surface overflow-hidden pt-12 pb-20 lg:py-24">
-        {/* Ambient gold illumination glow */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-secondary/15 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-primary-dark/60 blur-3xl pointer-events-none" />
+      {/* SECTION 01: FULL-BLEED HERO */}
+      <section className="relative w-full min-h-[calc(100svh-7.25rem)] flex items-end lg:items-center overflow-hidden bg-primary text-surface">
+        <Image
+          src="/assets/branding/image1.png"
+          alt="The Luxe Touch — beauty at home"
+          fill
+          priority
+          className="object-cover object-[78%_center] lg:object-[70%_center]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary/15 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-primary/20 lg:from-primary/40" />
 
-        <div className="max-w-[1320px] mx-auto px-6 md:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Text Column */}
-            <div className="lg:col-span-7 flex flex-col gap-6 pr-0 lg:pr-8">
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-8 h-[1px] bg-secondary-fixed" />
-                <span className="text-xs uppercase tracking-[0.25em] text-secondary-fixed font-semibold">
-                  {hero.eyebrow}
-                </span>
-              </div>
+        <div className="relative z-10 w-full max-w-[1320px] mx-auto px-6 md:px-8 py-16 lg:py-24">
+          <div className="max-w-xl flex flex-col gap-6">
+            <span className="text-xs uppercase tracking-[0.25em] text-secondary-fixed font-semibold">
+              {hero.eyebrow || "YOUR PERSONAL BEAUTY RITUAL"}
+            </span>
 
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-surface tracking-tight leading-[1.1]">
-                Beauty, in the{" "}
-                <span className="italic font-light text-secondary-fixed">
-                  comfort of home.
-                </span>
-              </h1>
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-surface tracking-tight leading-[1.08]">
+              Beauty, in the{" "}
+              <span className="italic font-light text-secondary-fixed">comfort of home.</span>
+            </h1>
 
-              <p className="text-base sm:text-lg text-surface/85 max-w-xl font-light leading-relaxed">
-                {hero.description}
-              </p>
+            <p className="text-base sm:text-lg text-surface/90 max-w-md font-light leading-relaxed">
+              {hero.description ||
+                "A considered touch. A little time for yourself. Salon-inspired beauty services, brought to your doorstep with care."}
+            </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href={hero.primaryCtaLink || "/book"}
-                  className="inline-flex items-center justify-center px-8 py-3.5 bg-primary-dark text-surface ring-1 ring-secondary hover:bg-secondary hover:text-espresso hover:ring-secondary transition-all duration-300 rounded text-xs uppercase tracking-[0.16em] font-semibold shadow-[0_4px_24px_rgba(0,37,30,0.4)]"
-                >
-                  {hero.primaryCtaText || "Book Your Appointment"}
-                </Link>
-                <Link
-                  href={hero.secondaryCtaLink || "/services"}
-                  className="inline-flex items-center justify-center px-8 py-3.5 bg-transparent text-secondary-fixed ring-1 ring-secondary/50 hover:bg-secondary/10 hover:ring-secondary-fixed transition-all duration-300 rounded text-xs uppercase tracking-[0.16em] font-semibold"
-                >
-                  {hero.secondaryCtaText || "Explore Our Services"}
-                </Link>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="grid grid-cols-3 gap-4 pt-8 border-t border-secondary/20 max-w-lg mt-2">
-                <div className="flex flex-col">
-                  <span className="font-serif text-xl sm:text-2xl text-secondary-fixed">100%</span>
-                  <span className="text-xs text-surface/75 mt-0.5">Clean Private Kits</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-serif text-xl sm:text-2xl text-secondary-fixed">5.0 ★</span>
-                  <span className="text-xs text-surface/75 mt-0.5">Client Rating</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-serif text-xl sm:text-2xl text-secondary-fixed">Expert</span>
-                  <span className="text-xs text-surface/75 mt-0.5">Trained Stylists</span>
-                </div>
-              </div>
+            <div className="flex flex-wrap items-center gap-6 pt-1">
+              <Link
+                href={hero.primaryCtaLink || "/book"}
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-surface text-primary rounded text-xs uppercase tracking-[0.16em] font-semibold hover:bg-secondary-fixed transition-colors shadow-lg"
+              >
+                {hero.primaryCtaText || "Book Your Appointment"}
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href={hero.secondaryCtaLink || "/services"}
+                className="inline-flex items-center gap-1.5 text-sm text-surface/95 border-b border-surface/50 pb-0.5 hover:border-secondary-fixed hover:text-secondary-fixed transition-colors"
+              >
+                {hero.secondaryCtaText || "Explore our services"}
+                <ArrowDown className="w-3.5 h-3.5" />
+              </Link>
             </div>
 
-            {/* Visual Column */}
-            <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-[440px] aspect-[4/5] rounded overflow-hidden shadow-2xl ring-1 ring-secondary/40">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA63RBXc63JtLFtrYtgfaf6APjwrh6PSe_Ud7NM8gfe5xtVaJ1656EoVgXIySyT2sceXzOmfuH3Z85GB5_cgKCQidYDRkRdqRyC7MteO7zL2zhd89iglsyWjvRyqhv5TfqRRPKfJUbAeLgtsOKRP-wTQAvEtQl3Vn9qcvqFkLkG-YWY9l5AGExTAyr76OEEmjmAWoXiLAC69AqHJdRDD1TJEYfBgDosHoSgLqeKIXw"
-                  alt="The Luxe Touch Beauty Ritual Portrait"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 p-3.5 bg-surface/95 backdrop-blur-md rounded shadow-lg flex items-center justify-between text-espresso">
-                  <div className="flex items-center gap-3">
-                    <Award className="w-5 h-5 text-secondary" />
-                    <div>
-                      <p className="text-xs uppercase tracking-wider font-semibold">
-                        Expert Stylist
-                      </p>
-                      <p className="text-[11px] text-espresso/70">At-home beauty service</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] text-secondary uppercase font-semibold">
-                    Booked
-                  </span>
-                </div>
-              </div>
+            <div className="flex items-center gap-3 pt-8">
+              <span className="w-10 h-[1px] bg-secondary" />
+              <span className="text-[11px] uppercase tracking-[0.22em] text-surface/80 font-medium">
+                Personalised care · Beautifully convenient
+              </span>
             </div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="flex items-center justify-center pt-16 gap-2 text-secondary-fixed/70">
-            <span className="text-xs uppercase tracking-[0.2em]">Scroll down</span>
-            <ArrowDown className="w-4 h-4 animate-bounce" />
           </div>
         </div>
+
+        <p
+          aria-hidden
+          className="hidden xl:block absolute right-5 bottom-24 z-10 text-[10px] uppercase tracking-[0.35em] text-surface/55 whitespace-nowrap origin-bottom-right -rotate-90"
+        >
+          Where Beauty Meets a Touch of Luxury.
+        </p>
       </section>
 
       {/* SECTION 02: BRAND INTRODUCTION (Warm Ivory) */}

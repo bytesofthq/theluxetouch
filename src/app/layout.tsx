@@ -15,9 +15,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "The Luxe Touch | Luxury In-Home Beauty & Grooming Services",
+  title: "The Luxe Touch | Where Beauty Meets a Touch of Luxury",
   description:
-    "Experience bespoke haute beauty and grooming rituals delivered thoughtfully to your doorstep, penthouse, or private venue.",
+    "Where Beauty Meets a Touch of Luxury. Salon-inspired beauty services, brought to your doorstep with care.",
   icons: {
     icon: "/assets/branding/logo.jpeg",
   },

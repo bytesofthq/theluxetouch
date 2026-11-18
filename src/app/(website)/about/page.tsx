@@ -1,29 +1,74 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ShieldCheck, Sparkles, HeartHandshake } from "lucide-react";
+import { ShieldCheck, Sparkles, HeartHandshake, Heart } from "lucide-react";
 
 export const metadata = {
   title: "About Us | The Luxe Touch",
   description:
-    "Meet our salon stylists. We bring salon-quality beauty services right to your doorstep.",
+    "Meet our salon stylists. Salon-quality beauty experiences brought right to your doorstep.",
 };
 
 export default function AboutPage() {
   return (
     <div className="w-full bg-surface">
-      {/* Client reference banner — exact design */}
-      <section className="w-full bg-[#F3E9DF]">
-        <Image
-          src="/assets/branding/salon-stylists.jpg"
-          alt="Meet Our Salon Stylists — The Luxe Touch"
-          width={1600}
-          height={900}
-          priority
-          className="w-full h-auto"
-        />
+      {/* Meet Our Salon Stylists — column layout */}
+      <section className="w-full bg-surface-container-low py-16 md:py-20">
+        <div className="max-w-[1100px] mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            {/* Image column — full banner */}
+            <div className="relative rounded overflow-hidden ring-1 ring-secondary/30 shadow-lg bg-[#F3E9DF]">
+              <Image
+                src="/assets/branding/salon-stylists.jpg"
+                alt="The Luxe Touch salon stylists"
+                width={1200}
+                height={800}
+                priority
+                className="w-full h-auto"
+                sizes="(max-width: 1024px) 100vw, 520px"
+              />
+            </div>
+
+            {/* Text column */}
+            <div className="flex flex-col gap-5 lg:pl-2">
+              <span className="text-xs uppercase tracking-[0.25em] text-secondary font-semibold">
+                ABOUT US
+              </span>
+              <h1 className="font-serif text-3xl sm:text-4xl text-primary tracking-tight">
+                Meet the team behind{" "}
+                <span className="italic font-light text-secondary">The Luxe Touch</span>
+              </h1>
+              <p className="text-sm sm:text-base text-espresso/80 font-light leading-relaxed">
+                Our stylists bring salon-quality care to your home — with skill, care, and a
+                personal touch every visit.
+              </p>
+
+              <div>
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-rose/25 text-espresso text-xs sm:text-sm font-medium tracking-wide ring-1 ring-rose/40">
+                  Skilled. Passionate. Dedicated.
+                  <Heart className="w-3.5 h-3.5 text-rose fill-rose" />
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Link
+                  href="/book"
+                  className="px-6 py-3 bg-primary text-surface text-xs uppercase tracking-[0.16em] font-semibold rounded hover:bg-primary-dark transition-colors"
+                >
+                  Book Now
+                </Link>
+                <Link
+                  href="/our-promise"
+                  className="px-6 py-3 bg-transparent text-primary ring-1 ring-secondary/50 text-xs uppercase tracking-[0.16em] font-semibold rounded hover:bg-secondary/10 transition-colors"
+                >
+                  Our Promise
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Hygiene section — simplified wording */}
+      {/* Hygiene section */}
       <section className="w-full bg-surface py-16 md:py-20">
         <div className="max-w-[1100px] mx-auto px-6 md:px-8">
           <div className="bg-primary text-surface p-8 sm:p-12 rounded ring-1 ring-secondary/40 shadow-xl">

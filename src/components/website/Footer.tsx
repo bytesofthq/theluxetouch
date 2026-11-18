@@ -22,8 +22,8 @@ export function Footer() {
                 <span className="font-serif text-2xl text-surface tracking-tight leading-none">
                   The Luxe Touch
                 </span>
-                <span className="text-[10px] text-secondary-fixed uppercase tracking-[0.25em] font-semibold mt-1">
-                  Beauty at Home
+                <span className="text-[10px] text-secondary-fixed tracking-wide font-medium mt-1">
+                  Where Beauty Meets a Touch of Luxury.
                 </span>
               </div>
             </div>
