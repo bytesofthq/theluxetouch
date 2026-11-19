@@ -18,21 +18,36 @@ import {
 import { getServicePriceDisplay } from "@/lib/utils";
 import { TestimonialsCarousel } from "@/components/website/TestimonialsCarousel";
 
-export const revalidate = 60; // ISR cache for 60 seconds
+export const revalidate = 300;
 
 export default async function HomePage() {
   await connectToDatabase();
 
   const [heroContent, categories, featuredServices, galleryImages, testimonials] =
     await Promise.all([
-      PageContent.findOne({ page: "home", section: "hero" }).lean(),
-      ServiceCategory.find({ isActive: true }).sort({ displayOrder: 1 }).lean(),
-      Service.find({ isFeatured: true, isActive: true })
-        .sort({ displayOrder: 1 })
-        .populate("categoryId")
+      PageContent.findOne({ page: "home", section: "hero" })
+        .select("content")
         .lean(),
-      GalleryImage.find({ isPublished: true }).sort({ displayOrder: 1 }).limit(6).lean(),
-      Testimonial.find({ isPublished: true }).sort({ displayOrder: 1 }).lean(),
+      ServiceCategory.find({ isActive: true })
+        .select("name slug description displayOrder")
+        .sort({ displayOrder: 1 })
+        .lean(),
+      Service.find({ isFeatured: true, isActive: true })
+        .select(
+          "name slug shortDescription pricing durationMinutes categoryId subcategory brandOrProducts"
+        )
+        .sort({ displayOrder: 1 })
+        .populate("categoryId", "name slug")
+        .lean(),
+      GalleryImage.find({ isPublished: true })
+        .select("title category image displayOrder")
+        .sort({ displayOrder: 1 })
+        .limit(6)
+        .lean(),
+      Testimonial.find({ isPublished: true })
+        .select("customerName roleOrLocation review rating displayOrder")
+        .sort({ displayOrder: 1 })
+        .lean(),
     ]);
 
   const hero = heroContent?.content || {
@@ -51,10 +66,11 @@ export default async function HomePage() {
       {/* SECTION 01: FULL-BLEED HERO */}
       <section className="relative w-full min-h-[calc(100svh-7.25rem)] flex items-end lg:items-center overflow-hidden bg-primary text-surface">
         <Image
-          src="/assets/branding/image1.png"
+          src="/assets/branding/image1.jpg"
           alt="The Luxe Touch — beauty at home"
           fill
           priority
+          quality={75}
           className="object-cover object-[78%_center] lg:object-[70%_center]"
           sizes="100vw"
         />

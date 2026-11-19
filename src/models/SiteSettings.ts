@@ -38,7 +38,7 @@ const SiteSettingsSchema: Schema<ISiteSettings> = new Schema(
       type: String,
       default: "Where Beauty Meets a Touch of Luxury.",
     },
-    logoUrl: { type: String, default: "/assets/branding/logo.jpeg" },
+    logoUrl: { type: String, default: "/assets/branding/logo.webp" },
     contact: {
       phone: { type: String, default: "+91 91960 02825" },
       whatsappNumber: { type: String, default: "919196002825" },

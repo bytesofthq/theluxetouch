@@ -7,6 +7,8 @@ import {
   Gem,
 } from "lucide-react";
 
+export const dynamic = "force-static";
+
 export const metadata = {
   title: "Our Promise to You | The Luxè Touch",
   description:

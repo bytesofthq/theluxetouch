@@ -226,7 +226,7 @@ async function seed() {
       $set: {
         brandName: "The Luxè Touch",
         tagline: "Where Beauty Meets a Touch of Luxury.",
-        logoUrl: "/assets/branding/logo.jpeg",
+        logoUrl: "/assets/branding/logo.webp",
         contact: {
           phone: "+91 91960 02825",
           whatsappNumber: "919196002825",

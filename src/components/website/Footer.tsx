@@ -12,7 +12,8 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <div className="relative w-12 h-12 rounded-full overflow-hidden ring-1 ring-secondary/50">
                 <Image
-                  src="/assets/branding/logo.jpeg"
+                  src="/assets/branding/logo.webp"
+                  sizes="48px"
                   alt="The Luxe Touch Logo"
                   fill
                   className="object-cover"
@@ -42,22 +43,22 @@ export function Footer() {
             <span className="text-xs uppercase tracking-[0.2em] text-secondary-fixed font-semibold mb-2">
               Navigation
             </span>
-            <Link href="/" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
+            <Link prefetch href="/" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
               Home
             </Link>
-            <Link href="/services" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
+            <Link prefetch href="/services" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
               Services
             </Link>
-            <Link href="/gallery" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
+            <Link prefetch href="/gallery" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
               Gallery
             </Link>
-            <Link href="/about" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
+            <Link prefetch href="/about" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
               About Us
             </Link>
-            <Link href="/our-promise" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
+            <Link prefetch href="/our-promise" className="text-sm text-surface/80 hover:text-secondary-fixed transition-colors">
               Our Promise
             </Link>
-            <Link href="/book" className="text-sm text-secondary-fixed font-medium hover:underline">
+            <Link prefetch href="/book" className="text-sm text-secondary-fixed font-medium hover:underline">
               Book Appointment
             </Link>
           </div>

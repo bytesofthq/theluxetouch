@@ -4,22 +4,27 @@ import "./globals.css";
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   variable: "--font-garamond",
   display: "swap",
+  preload: true,
 });
 
 const manrope = Manrope({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-manrope",
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
   title: "The Luxè Touch | Where Beauty Meets a Touch of Luxury",
   description:
-    "Premium beauty & salon home services. Where Beauty Meets a Touch of Luxury.",
+    "Premium beauty & salon home services in Lucknow. Where Beauty Meets a Touch of Luxury.",
   icons: {
-    icon: "/assets/branding/logo.jpeg",
+    icon: "/assets/branding/logo.webp",
   },
 };
 
@@ -36,4 +41,3 @@ export default function RootLayout({
     </html>
   );
 }
-

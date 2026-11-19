@@ -10,6 +10,8 @@ export const metadata = {
   description: "Book a beauty or salon home service. Confirmed by call and WhatsApp.",
 };
 
+export const revalidate = 300;
+
 export default async function BookPage({
   searchParams,
 }: {
@@ -18,13 +20,16 @@ export default async function BookPage({
   await connectToDatabase();
   const { service: preselectedServiceId } = await searchParams;
 
-  const categories = await ServiceCategory.find({ isActive: true })
-    .sort({ displayOrder: 1 })
-    .lean();
-
-  const services = await Service.find({ isActive: true })
-    .sort({ displayOrder: 1 })
-    .lean();
+  const [categories, services] = await Promise.all([
+    ServiceCategory.find({ isActive: true })
+      .select("name")
+      .sort({ displayOrder: 1 })
+      .lean(),
+    Service.find({ isActive: true })
+      .select("name categoryId")
+      .sort({ displayOrder: 1 })
+      .lean(),
+  ]);
 
   const serializedCategories = categories.map((c: any) => ({
     _id: c._id.toString(),

@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import { GalleryImage } from "@/models/GalleryImage";
 import { GalleryClient } from "@/components/website/GalleryClient";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export const metadata = {
   title: "Gallery | The Luxe Touch",

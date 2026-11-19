@@ -57,6 +57,7 @@ export function GalleryClient({ initialImages }: { initialImages: GalleryItem[] 
               src={item.image.url}
               alt={item.image.alt || item.title}
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-surface">
@@ -103,6 +104,8 @@ export function GalleryClient({ initialImages }: { initialImages: GalleryItem[] 
                 src={activeLightbox.image.url}
                 alt={activeLightbox.image.alt || activeLightbox.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                priority
                 className="object-cover"
               />
             </div>

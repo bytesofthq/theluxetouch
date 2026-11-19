@@ -1,24 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
 import { connectToDatabase } from "@/lib/mongodb";
 import { ServiceCategory } from "@/models/ServiceCategory";
 import { Service } from "@/models/Service";
 import { Clock, ArrowRight } from "lucide-react";
 import { getServicePriceDisplay } from "@/lib/utils";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export default async function ServicesPage() {
   await connectToDatabase();
 
-  const categories = await ServiceCategory.find({ isActive: true })
-    .sort({ displayOrder: 1 })
-    .lean();
-
-  const services = await Service.find({ isActive: true })
-    .sort({ displayOrder: 1 })
-    .populate("categoryId")
-    .lean();
+  const [categories, services] = await Promise.all([
+    ServiceCategory.find({ isActive: true })
+      .select("name slug description displayOrder")
+      .sort({ displayOrder: 1 })
+      .lean(),
+    Service.find({ isActive: true })
+      .select(
+        "name slug shortDescription pricing durationMinutes categoryId subcategory brandOrProducts displayOrder"
+      )
+      .sort({ displayOrder: 1 })
+      .populate("categoryId", "name slug")
+      .lean(),
+  ]);
 
   return (
     <div className="w-full bg-surface py-16">

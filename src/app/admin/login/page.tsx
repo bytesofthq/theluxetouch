@@ -44,9 +44,10 @@ export default function AdminLoginPage() {
         <div className="flex flex-col items-center text-center mb-8">
           <div className="relative w-14 h-14 rounded-full overflow-hidden ring-1 ring-secondary/40 mb-3">
             <Image
-              src="/assets/branding/logo.jpeg"
+              src="/assets/branding/logo.webp"
               alt="The Luxe Touch Logo"
               fill
+              sizes="56px"
               className="object-cover"
               priority
             />

@@ -1,5 +1,3 @@
-"use client";
-
 import { MessageCircle } from "lucide-react";
 
 export function WhatsAppFloatingButton({
@@ -17,11 +15,10 @@ export function WhatsAppFloatingButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 bg-[#25D366] text-white rounded-full shadow-[0_8px_24px_rgba(37,211,102,0.35)] hover:bg-[#1EBE5D] hover:scale-105 transition-all duration-300 font-medium text-xs tracking-wider uppercase group"
+      className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 bg-[#25D366] text-white rounded-full shadow-[0_8px_24px_rgba(37,211,102,0.35)] hover:bg-[#1EBE5D] hover:scale-105 transition-all duration-300 font-medium text-xs tracking-wider uppercase"
     >
       <MessageCircle className="w-5 h-5 fill-current" />
       <span className="hidden sm:inline font-semibold">WhatsApp Chat</span>
     </a>
   );
 }
-

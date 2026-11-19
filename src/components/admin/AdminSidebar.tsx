@@ -56,9 +56,10 @@ export function AdminSidebar({
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-secondary/40 flex-shrink-0">
               <Image
-                src="/assets/branding/logo.jpeg"
+                src="/assets/branding/logo.webp"
                 alt="The Luxe Touch Logo"
                 fill
+                sizes="32px"
                 className="object-cover"
               />
             </div>

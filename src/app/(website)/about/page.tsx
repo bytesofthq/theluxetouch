@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShieldCheck, Sparkles, HeartHandshake, Heart } from "lucide-react";
 
+export const dynamic = "force-static";
+
 export const metadata = {
   title: "About Us | The Luxè Touch",
   description:

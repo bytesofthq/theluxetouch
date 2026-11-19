@@ -8,7 +8,17 @@ import { Clock, ShieldCheck, Sparkles, ArrowLeft } from "lucide-react";
 import { getServicePriceDisplay } from "@/lib/utils";
 import type { Metadata } from "next";
 
-export const revalidate = 60;
+export const revalidate = 300;
+
+export async function generateStaticParams() {
+  try {
+    await connectToDatabase();
+    const services = await Service.find({ isActive: true }).select("slug").lean();
+    return services.map((s) => ({ slug: s.slug }));
+  } catch {
+    return [];
+  }
+}
 
 export async function generateMetadata({
   params,
@@ -18,7 +28,9 @@ export async function generateMetadata({
   try {
     await connectToDatabase();
     const { slug } = await params;
-    const service = await Service.findOne({ slug }).lean();
+    const service = await Service.findOne({ slug })
+      .select("name shortDescription")
+      .lean();
 
     if (!service) {
       return { title: "Service Not Found | The Luxe Touch" };
@@ -43,7 +55,12 @@ export default async function ServiceDetailPage({
   let service;
   try {
     await connectToDatabase();
-    service = await Service.findOne({ slug }).populate("categoryId").lean();
+    service = await Service.findOne({ slug })
+      .select(
+        "name slug shortDescription description pricing durationMinutes subcategory brandOrProducts categoryId"
+      )
+      .populate("categoryId", "name slug")
+      .lean();
   } catch (error) {
     console.error(`[ServiceDetail] Failed to load slug="${slug}":`, error);
     notFound();

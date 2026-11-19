@@ -7,9 +7,13 @@ export const metadata = {
   description: "Get in touch with The Luxe Touch for bookings and questions.",
 };
 
+export const revalidate = 300;
+
 export default async function ContactPage() {
   await connectToDatabase();
-  const settings = (await SiteSettings.findOne({}).lean()) || {
+  const settings = (await SiteSettings.findOne({})
+    .select("brandName contact serviceAreas businessHours")
+    .lean()) || {
     brandName: "The Luxe Touch",
     contact: {
       phone: "+91 91960 02825",

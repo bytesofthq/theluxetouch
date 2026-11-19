@@ -31,6 +31,11 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
     const opts = {
       bufferCommands: false,
       dbName: "theluxetouch",
+      // Serverless-friendly pool — avoid opening too many Atlas connections
+      maxPoolSize: 10,
+      minPoolSize: 0,
+      serverSelectionTimeoutMS: 8000,
+      socketTimeoutMS: 45000,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI as string, opts).then((mongooseInstance) => {
@@ -47,4 +52,3 @@ export async function connectToDatabase(): Promise<typeof mongoose> {
 
   return cached.conn;
 }
-
