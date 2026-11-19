@@ -1,4 +1,6 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
+// Side-effect import so populate("categoryId") works on cold serverless starts
+import "./ServiceCategory";
 
 export interface IService extends Document {
   name: string;

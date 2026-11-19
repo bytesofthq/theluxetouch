@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { connectToDatabase } from "@/lib/mongodb";
 import { Service } from "@/models/Service";
+// Ensures ServiceCategory schema is registered before populate() on cold starts
+import "@/models/ServiceCategory";
 import { Clock, ShieldCheck, Sparkles, ArrowLeft } from "lucide-react";
 import { getServicePriceDisplay } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -14,18 +15,22 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  await connectToDatabase();
-  const { slug } = await params;
-  const service = await Service.findOne({ slug }).lean();
+  try {
+    await connectToDatabase();
+    const { slug } = await params;
+    const service = await Service.findOne({ slug }).lean();
 
-  if (!service) {
-    return { title: "Service Not Found | The Luxe Touch" };
+    if (!service) {
+      return { title: "Service Not Found | The Luxe Touch" };
+    }
+
+    return {
+      title: `${service.name} | The Luxe Touch Luxury Services`,
+      description: service.shortDescription,
+    };
+  } catch {
+    return { title: "Service | The Luxe Touch" };
   }
-
-  return {
-    title: `${service.name} | The Luxe Touch Luxury Services`,
-    description: service.shortDescription,
-  };
 }
 
 export default async function ServiceDetailPage({
@@ -33,9 +38,16 @@ export default async function ServiceDetailPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  await connectToDatabase();
   const { slug } = await params;
-  const service = await Service.findOne({ slug }).populate("categoryId").lean();
+
+  let service;
+  try {
+    await connectToDatabase();
+    service = await Service.findOne({ slug }).populate("categoryId").lean();
+  } catch (error) {
+    console.error(`[ServiceDetail] Failed to load slug="${slug}":`, error);
+    notFound();
+  }
 
   if (!service) {
     notFound();
