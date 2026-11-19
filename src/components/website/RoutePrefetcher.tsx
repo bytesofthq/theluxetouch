@@ -35,8 +35,8 @@ export function RoutePrefetcher() {
       return () => window.cancelIdleCallback(id);
     }
 
-    const timer = window.setTimeout(prefetchAll, 300);
-    return () => window.clearTimeout(timer);
+    const timer = setTimeout(prefetchAll, 300);
+    return () => clearTimeout(timer);
   }, [router]);
 
   return null;

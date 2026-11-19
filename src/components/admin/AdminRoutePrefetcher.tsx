@@ -31,8 +31,8 @@ export function AdminRoutePrefetcher() {
       return () => window.cancelIdleCallback(id);
     }
 
-    const t = window.setTimeout(prefetchAll, 200);
-    return () => window.clearTimeout(t);
+    const t = setTimeout(prefetchAll, 200);
+    return () => clearTimeout(t);
   }, [router]);
 
   return null;
