@@ -97,6 +97,7 @@ export function AdminSidebar({
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch
                 onClick={onClose}
                 className={`flex items-center gap-3 px-3.5 py-2.5 rounded text-xs font-semibold tracking-wide transition-colors ${
                   isActive

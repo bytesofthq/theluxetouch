@@ -7,7 +7,9 @@ export const dynamic = "force-dynamic";
 export default async function AdminSettingsPage() {
   await connectToDatabase();
 
-  const settings = (await SiteSettings.findOne({}).lean()) || {
+  const settings = (await SiteSettings.findOne({})
+    .select("brandName tagline logoUrl contact serviceAreas businessHours")
+    .lean()) || {
     brandName: "The Luxè Touch",
     tagline: "Where Beauty Meets a Touch of Luxury.",
     contact: {

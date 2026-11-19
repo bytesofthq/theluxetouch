@@ -9,8 +9,11 @@ export default async function AdminContentPage() {
   await connectToDatabase();
 
   const [heroContent, testimonials] = await Promise.all([
-    PageContent.findOne({ page: "home", section: "hero" }).lean(),
-    Testimonial.find().sort({ displayOrder: 1, createdAt: -1 }).lean(),
+    PageContent.findOne({ page: "home", section: "hero" }).select("content").lean(),
+    Testimonial.find()
+      .select("customerName roleOrLocation review rating displayOrder isPublished")
+      .sort({ displayOrder: 1, createdAt: -1 })
+      .lean(),
   ]);
 
   const serializedHero = heroContent ? JSON.parse(JSON.stringify(heroContent.content)) : null;

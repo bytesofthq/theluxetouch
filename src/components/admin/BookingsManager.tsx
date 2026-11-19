@@ -1,52 +1,64 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { updateBookingStatus } from "@/actions/bookings";
 import { createAdminBookingWhatsAppResponse, generateWhatsAppLink } from "@/lib/whatsapp";
-import {
-  Search,
-  Filter,
-  X,
-  Phone,
-  MessageCircle,
-  Mail,
-  MapPin,
-  Clock,
-  Calendar,
-  CheckCircle,
-  AlertCircle,
-  FileText,
-} from "lucide-react";
+import { Search, X, Phone, MessageCircle, Mail } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 
 export function BookingsManager({
   initialBookings,
   initialSelectedId,
+  currentStatus = "all",
+  currentQuery = "",
+  page = 1,
+  totalPages = 1,
+  total = 0,
 }: {
   initialBookings: any[];
   initialSelectedId?: string;
+  currentStatus?: string;
+  currentQuery?: string;
+  page?: number;
+  totalPages?: number;
+  total?: number;
 }) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [bookings, setBookings] = useState(initialBookings);
-  const [selectedStatus, setSelectedStatus] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(currentQuery);
   const [selectedBooking, setSelectedBooking] = useState<any>(
     initialBookings.find((b) => b._id === initialSelectedId) || null
   );
   const [adminNoteInput, setAdminNoteInput] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
 
+  useEffect(() => {
+    setBookings(initialBookings);
+    setSearchQuery(currentQuery);
+    if (initialSelectedId) {
+      setSelectedBooking(initialBookings.find((b) => b._id === initialSelectedId) || null);
+    }
+  }, [initialBookings, currentQuery, initialSelectedId]);
+
   const statuses = ["all", "new", "contacted", "confirmed", "completed", "cancelled"];
 
-  const filtered = bookings.filter((b) => {
-    const matchesStatus =
-      selectedStatus === "all" ? true : b.status.toLowerCase() === selectedStatus.toLowerCase();
-    const matchesSearch =
-      b.bookingReference.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      b.customer.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      b.customer.phone.includes(searchQuery) ||
-      b.service.serviceName.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesStatus && matchesSearch;
-  });
+  const navigate = (next: { status?: string; q?: string; page?: number }) => {
+    const params = new URLSearchParams();
+    const status = next.status ?? currentStatus;
+    const q = next.q ?? currentQuery;
+    const nextPage = next.page ?? 1;
+    if (status && status !== "all") params.set("status", status);
+    if (q) params.set("q", q);
+    if (nextPage > 1) params.set("page", String(nextPage));
+    const qs = params.toString();
+    startTransition(() => {
+      router.push(qs ? `/admin/bookings?${qs}` : "/admin/bookings");
+    });
+  };
+
+  const filtered = bookings;
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -104,15 +116,19 @@ export function BookingsManager({
   return (
     <div className="space-y-6">
       {/* Filters & Search Toolbar */}
-      <div className="bg-white p-3 sm:p-4 rounded-lg border border-admin-border shadow-card flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
-        {/* Status Tabs */}
+      <div
+        className={`bg-white p-3 sm:p-4 rounded-lg border border-admin-border shadow-card flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 ${
+          isPending ? "opacity-70" : ""
+        }`}
+      >
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 max-w-full no-scrollbar flex-nowrap sm:flex-wrap">
           {statuses.map((st) => (
             <button
               key={st}
-              onClick={() => setSelectedStatus(st)}
+              type="button"
+              onClick={() => navigate({ status: st, page: 1 })}
               className={`px-3 py-1.5 rounded text-xs font-semibold capitalize transition-colors flex-shrink-0 ${
-                selectedStatus === st
+                currentStatus === st
                   ? "bg-primary text-surface shadow-sm"
                   : "bg-surface-admin text-espresso/70 hover:bg-surface-admin/80"
               }`}
@@ -122,17 +138,28 @@ export function BookingsManager({
           ))}
         </div>
 
-        {/* Search */}
-        <div className="relative w-full md:w-72 flex-shrink-0">
+        <form
+          className="relative w-full md:w-72 flex-shrink-0"
+          onSubmit={(e) => {
+            e.preventDefault();
+            navigate({ q: searchQuery.trim(), page: 1 });
+          }}
+        >
           <input
-            type="text"
+            type="search"
             placeholder="Search by name, ref, phone..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 rounded bg-surface-admin text-xs border border-admin-border focus:outline-none focus:ring-1 focus:ring-primary text-espresso"
+            className="w-full pl-9 pr-16 py-2 rounded bg-surface-admin text-xs border border-admin-border focus:outline-none focus:ring-1 focus:ring-primary text-espresso"
           />
           <Search className="w-4 h-4 text-espresso/40 absolute left-3 top-2.5" />
-        </div>
+          <button
+            type="submit"
+            className="absolute right-1.5 top-1.5 px-2 py-1 rounded text-[10px] font-semibold uppercase bg-primary text-surface"
+          >
+            Go
+          </button>
+        </form>
       </div>
 
       {/* Bookings Table */}
@@ -202,7 +229,8 @@ export function BookingsManager({
 
         {filtered.length === 0 && (
           <div className="p-12 text-center text-xs text-espresso/60 font-light">
-            No booking enquiries match your selected filters.
+            No booking enquiries match your selected filters
+            {total > 0 ? ` on page ${page} of ${totalPages}` : ""}.
           </div>
         )}
       </div>

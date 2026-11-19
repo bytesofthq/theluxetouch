@@ -7,7 +7,10 @@ export const dynamic = "force-dynamic";
 export default async function AdminGalleryPage() {
   await connectToDatabase();
 
-  const images = await GalleryImage.find().sort({ createdAt: -1 }).lean();
+  const images = await GalleryImage.find()
+    .select("title description category image isFeatured isPublished displayOrder")
+    .sort({ displayOrder: 1, createdAt: -1 })
+    .lean();
 
   const serializedImages = images.map((img: any) => ({
     _id: img._id.toString(),

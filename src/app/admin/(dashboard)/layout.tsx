@@ -1,21 +1,28 @@
-import { headers } from "next/headers";
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
+import { getAdminSession } from "@/lib/admin-auth";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { AdminRoutePrefetcher } from "@/components/admin/AdminRoutePrefetcher";
+import { NavigationProgress } from "@/components/website/NavigationProgress";
 
 export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const reqHeaders = await headers();
-  const session = await auth.api.getSession({
-    headers: reqHeaders,
-  });
+  const session = await getAdminSession();
 
   if (!session) {
     redirect("/admin/login");
   }
 
-  return <AdminShell>{children}</AdminShell>;
+  return (
+    <>
+      <Suspense fallback={null}>
+        <NavigationProgress />
+      </Suspense>
+      <AdminRoutePrefetcher />
+      <AdminShell>{children}</AdminShell>
+    </>
+  );
 }

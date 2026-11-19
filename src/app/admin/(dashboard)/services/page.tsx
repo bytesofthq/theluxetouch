@@ -9,8 +9,17 @@ export default async function AdminServicesPage() {
   await connectToDatabase();
 
   const [services, categories] = await Promise.all([
-    Service.find().sort({ displayOrder: 1, createdAt: -1 }).populate("categoryId").lean(),
-    ServiceCategory.find().sort({ displayOrder: 1 }).lean(),
+    Service.find()
+      .select(
+        "name slug categoryId subcategory brandOrProducts shortDescription description pricing durationMinutes isFeatured isActive displayOrder"
+      )
+      .sort({ displayOrder: 1, createdAt: -1 })
+      .populate("categoryId", "name")
+      .lean(),
+    ServiceCategory.find()
+      .select("name slug description isActive displayOrder")
+      .sort({ displayOrder: 1 })
+      .lean(),
   ]);
 
   const serializedServices = services.map((s: any) => ({
